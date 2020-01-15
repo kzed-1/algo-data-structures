@@ -48,7 +48,6 @@ class LinkedList {
             this.tail = nextNode
             this.length ++
         }
-
         return {
             head: this.head,
             tail: this.tail,
@@ -59,7 +58,18 @@ class LinkedList {
 
     // TODO: Implement the removeTail method here
     removeTail() {
+        if (this.length === 0) return undefined;
+        this.tail.next = null;
+
+        let next = this.head.next
         
+        while (next) {
+            next;
+        }
+
+       
+   
+
 
     }
 

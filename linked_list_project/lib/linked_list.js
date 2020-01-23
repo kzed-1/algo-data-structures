@@ -145,6 +145,16 @@ class LinkedList {
 
     // TODO: Implement the set method here
     set(index, val) {
+        let linkedList = [this.head];
+        let counter = 0;
+
+        while (counter < index) {
+            linkedList.push(linkedList[counter].next)
+            counter ++;
+        }
+
+        let newNode = new Node(val)
+
         
     }
 

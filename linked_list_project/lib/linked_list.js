@@ -148,12 +148,25 @@ class LinkedList {
         let linkedList = [this.head];
         let counter = 0;
 
-        while (counter < index) {
-            linkedList.push(linkedList[counter].next)
+        while (counter <= index) {
+            if (linkedList[counter] === null) {
+                linkedList.push(null)
+            }else {
+                linkedList.push(linkedList[counter].next)
+            }
             counter ++;
         }
 
         let newNode = new Node(val)
+
+        if (!linkedList[index]) {
+            return false 
+        }else {
+            linkedList[index-1].next = newNode
+            newNode.next = linkedList[index+1];
+            return true;
+        }
+
 
         
     }
@@ -185,6 +198,21 @@ class LinkedList {
 
     // TODO: Implement the remove method here
     remove(index) {
+        let linkedList = [this.head];
+        let counter = 0;
+
+        while(counter <= index) {
+            if (linkedList[counter] === null) {
+                return undefined
+            }else {
+                linkedList.push(linkedList[counter].next)
+            }
+            counter ++;
+        }
+
+        linkedList[index-1].next = linkedList[index+1]
+        this.length -= 1;
+        return linkedList[index]
 
     }
 

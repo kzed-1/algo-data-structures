@@ -48,11 +48,12 @@ class LinkedList {
             this.tail = nextNode
             this.length ++
         }
-        return {
-            head: this.head,
-            tail: this.tail,
-            length: this.length
-        }
+        // return {
+        //     head: this.head,
+        //     tail: this.tail,
+        //     length: this.length
+        // }
+        return this;
 
     }
 
@@ -145,74 +146,43 @@ class LinkedList {
 
     // TODO: Implement the set method here
     set(index, val) {
-        let linkedList = [this.head];
-        let counter = 0;
-
-        while (counter <= index) {
-            if (linkedList[counter] === null) {
-                linkedList.push(null)
-            }else {
-                linkedList.push(linkedList[counter].next)
-            }
-            counter ++;
-        }
-
-        let newNode = new Node(val)
-
-        if (!linkedList[index]) {
-            return false 
-        }else {
-            linkedList[index-1].next = newNode
-            newNode.next = linkedList[index+1];
+        const foundNode = this.get(index);
+        if (foundNode) {
+            foundNode.value = val;
             return true;
         }
-
-
+        return false 
         
     }
 
     // TODO: Implement the insert method here
     insert(index, val) {
-        if (this.length-1 < index)return false;
-        let linkedList = [this.head];
-        let counter = 0;
 
-        while(counter < index) {
-            linkedList.push(linkedList[counter].next);
-            counter++;
-        }
-        let newNode = new Node(val)
+        if (index < 0 || index >= this.length) return false; // if the index is out of bounds, return false 
+        if (index === this.length) return !!this.addToTail(val); //if the index is === the length, add to the tail
+        if (index === 0) return !!this.addToHead(val); //if the index is 0 add to the head 
+        
+        const newNode = new Node(val);
+        const prevNode = this.get(index - 1)
+        const temp = prevNode.next
+        prevNode.next = newNode;
+        newNode.next = temp;
+        this.length ++;
+        return true;
 
-        if (linkedList.length===1){
-            linkedList[0].next = newNode
-            newNode.next = linkedList[index];
-            this.length ++;
-            return true
-        } else {
-            linkedList[index-1].next = newNode;
-            newNode.next = linkedList[index];
-            this.length ++;
-            return true
-        }
     }
 
     // TODO: Implement the remove method here
     remove(index) {
-        let linkedList = [this.head];
-        let counter = 0;
+        if (index < 0 || index >= this.length) return undefined;
+        if (index === 0) return this.removeHead();
+        if (index === this.length - 1) return this.removeTail();
 
-        while(counter <= index) {
-            if (linkedList[counter] === null) {
-                return undefined
-            }else {
-                linkedList.push(linkedList[counter].next)
-            }
-            counter ++;
-        }
-
-        linkedList[index-1].next = linkedList[index+1]
+        const prev = this.get(index-1);
+        const removedNode = this.get(index);
+        prev.next = removedNode.next;
         this.length -= 1;
-        return linkedList[index]
+        return removedNode;
 
     }
 
@@ -222,7 +192,6 @@ class LinkedList {
     }
 }
 
-//asdfsaf
 
 exports.Node = Node;
 exports.LinkedList = LinkedList;

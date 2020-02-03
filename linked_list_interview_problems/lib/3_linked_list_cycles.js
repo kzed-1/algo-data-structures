@@ -61,18 +61,21 @@
 // -----------
 function hasCycle(linkedList) {
   // TODO: Implement the hasCycle function!
-  let string = ""
-  let node = linkedList.head
 
-  while (node !== null) {
-    if (string.includes(String(node.value))){
-      return true 
-    }
-    string += String(node.value)
-    node = node.next
+  let head = linkedList.head
+
+  if (head === null) return false
+  
+  let fast = head.next 
+  let slow = head
+
+  while (fast !== null && fast.next !== null && slow != null){ 
+    if (slow === fast) return true;
+    fast = fast.next.next
+    slow = slow.next
   }
-  return false;
 
+  return false
 }
 
 

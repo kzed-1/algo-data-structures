@@ -76,18 +76,62 @@
 // Let's code!
 // -----------
 function balancedParens(str) {
-    let count = 0;
+    let parenCount = 0;
+    let bracketCount = 0;
+    let curlyCount = 0;
+    let lastChar = null;
 
-    if (str.length === 1) return false;
+    // const brackets= ["(", ""]
 
+
+    
     for(let i = 0; i < str.length; i++){
-        if (str[i] === "(") {
-            count ++
-        } else {
-            count -- 
+
+        // switch (str[i]) {
+        //     case "(":
+        //         parenCount ++;
+        //     case "[":
+        //         bracketCount ++;
+        //     case "{":
+        //         curlyCount ++;
+        //     case ")":
+        //         parenCount--;
+        //     case "]":
+        //         bracketCount--;
+        //     case "}":
+        //         curlyCount--;   
+        // }
+
+        if (str[i] === "(" ) {
+            parenCount ++
+            lastChar = "("
+        } else if (str[i] === "[") {
+            bracketCount ++
+            lastChar = "["
+        } else if (str[i] === "{"){
+            curlyCount ++
+            lastChar = "{"
+        } else if (str[i] === ")") {
+            parenCount --
+            lastChar = ")"
+        } else if (str[i] === "]") {
+            bracketCount -- 
+            lastChar = "]"
+        } else if (str[i] === "}") {
+            curlyCount --
+            lastChar = "}"
         }
-        if (count < 0) return false
+        // console.log(parenCount)
+        // console.log(bracketCount)
+        // console.log(curlyCount)
+
+
+
+        if (parenCount < 0 || bracketCount < 0 || curlyCount < 0) return false
     }
+    if (parenCount % 2 !== 0 || bracketCount % 2 !== 0 || curlyCount % 2 !==0) return false;
+ 
+
     return true;
 }
 

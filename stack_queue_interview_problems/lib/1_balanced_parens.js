@@ -76,63 +76,82 @@
 // Let's code!
 // -----------
 function balancedParens(str) {
-    let parenCount = 0;
-    let bracketCount = 0;
-    let curlyCount = 0;
-    let lastChar = null;
+    // let parenCount = 0;
+    // let bracketCount = 0;
+    // let curlyCount = 0;
+    // let lastChar = null;
 
-    // const brackets= ["(", ""]
+    // // const brackets= ["(", ""]
 
 
     
-    for(let i = 0; i < str.length; i++){
+    // for(let i = 0; i < str.length; i++){
 
-        // switch (str[i]) {
-        //     case "(":
-        //         parenCount ++;
-        //     case "[":
-        //         bracketCount ++;
-        //     case "{":
-        //         curlyCount ++;
-        //     case ")":
-        //         parenCount--;
-        //     case "]":
-        //         bracketCount--;
-        //     case "}":
-        //         curlyCount--;   
-        // }
+    //     // switch (str[i]) {
+    //     //     case "(":
+    //     //         parenCount ++;
+    //     //     case "[":
+    //     //         bracketCount ++;
+    //     //     case "{":
+    //     //         curlyCount ++;
+    //     //     case ")":
+    //     //         parenCount--;
+    //     //     case "]":
+    //     //         bracketCount--;
+    //     //     case "}":
+    //     //         curlyCount--;   
+    //     // }
 
-        if (str[i] === "(" ) {
-            parenCount ++
-            lastChar = "("
-        } else if (str[i] === "[") {
-            bracketCount ++
-            lastChar = "["
-        } else if (str[i] === "{"){
-            curlyCount ++
-            lastChar = "{"
-        } else if (str[i] === ")") {
-            parenCount --
-            lastChar = ")"
-        } else if (str[i] === "]") {
-            bracketCount -- 
-            lastChar = "]"
-        } else if (str[i] === "}") {
-            curlyCount --
-            lastChar = "}"
-        }
-        // console.log(parenCount)
-        // console.log(bracketCount)
-        // console.log(curlyCount)
+    //     if (str[i] === "(" ) {
+    //         parenCount ++
+    //         lastChar = "("
+    //     } else if (str[i] === "[") {
+    //         bracketCount ++
+    //         lastChar = "["
+    //     } else if (str[i] === "{"){
+    //         curlyCount ++
+    //         lastChar = "{"
+    //     } else if (str[i] === ")") {
+    //         parenCount --
+    //         lastChar = ")"
+    //     } else if (str[i] === "]") {
+    //         bracketCount -- 
+    //         lastChar = "]"
+    //     } else if (str[i] === "}") {
+    //         curlyCount --
+    //         lastChar = "}"
+    //     }
+    //     // console.log(parenCount)
+    //     // console.log(bracketCount)
+    //     // console.log(curlyCount)
 
 
 
-        if (parenCount < 0 || bracketCount < 0 || curlyCount < 0) return false
-    }
-    if (parenCount % 2 !== 0 || bracketCount % 2 !== 0 || curlyCount % 2 !==0) return false;
+    //     if (parenCount < 0 || bracketCount < 0 || curlyCount < 0) return false
+    // }
+    // if (parenCount % 2 !== 0 || bracketCount % 2 !== 0 || curlyCount % 2 !==0) return false;
  
 
-    return true;
+    // return true;
+
+    const stack = []
+    const pairs = {
+        "(" : ")",
+        "[" : "]",
+        "{" : "}"
+    }
+
+    for (let i = 0; i < str.length; i++){
+        let char = str[i]
+        if (pairs[char]) {
+            stack.push(char)
+        }else {
+            if (char === ")" || char === "]" || char === "}") {
+                if (pairs[stack.pop()] !== char) return false
+            }
+        }
+    }
+    return stack.length === 0 
 }
 
 exports.balancedParens = balancedParens;

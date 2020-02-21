@@ -28,18 +28,85 @@
 
 function iterateAcrossLinkedListBackwards(linkedList) {
     // TODO: Implement the iterateAcrossLinkedListBackwards function here
-    reverse = ""
+    // reverse = ""
 
-    const stack = [linkedList.head]
+    // const stack = [linkedList.head]
 
-    while (stack[0]) {
-        let temp = stack.shift()
-        // console.log(temp)
-        stack.push(temp.next)
-        reverse = " -> " + temp.value + reverse
+    // while (stack[0]) {
+    //     let temp = stack.shift()
+    //     // console.log(temp)
+    //     stack.push(temp.next)
+    //     reverse = " -> " + temp.value + reverse
+    // }
+
+    // return reverse.slice(4)
+
+    
+    const stack = new Stack()
+    let reverse = "";
+    let current = linkedList.head
+
+    
+    while (current !== null) {
+        stack.push(current);
+        current = current.next
     }
 
-    return reverse.slice(4)
+    while (stack.size() > 0) {
+        if (stack.size() > 1) {
+            reverse += `${(stack.pop().value)} -> `;
+        } else {
+            reverse += `${(stack.pop().value)}`;
+        }
+    }
+
+    return reverse
+}
+
+class Node {
+    constructor(val){
+        this.value = val;
+        this.next = null;
+    }
+}
+
+class Stack {
+    constructor(){
+        this.top = null;
+        this.bottom = null;
+        this.length = 0
+    }
+
+    push (val) {
+        const newNode = new Node(val);
+        if (!this.top) {
+            this.top = newNode;
+            this.bottom = newNode;
+        }else {
+            let temp = this.top;
+            this.top = newNode;
+            this.top.next = temp;
+        }
+        return ++this.length;
+    }
+
+    pop () {
+        if (!this.top){
+            return null;
+        }
+        const temp = this.top;
+        if (this.top === this.bottom){
+            this.bottom = null;
+        }
+        this.top = this.top.next;
+        this.length --;
+        return temp.value;
+     
+    }
+
+    size () {
+        return this.length;
+    }
 }
 
 exports.iterateAcrossLinkedListBackwards = iterateAcrossLinkedListBackwards;

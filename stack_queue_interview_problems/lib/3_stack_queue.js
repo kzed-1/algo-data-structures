@@ -78,11 +78,10 @@ class Stack {
 class StackQueue {
     // TODO: Implement the StackQueue class!
     constructor(){
-        this.inStack = null;
-        this.outStack = null;
+        this.inStack = new Stack();
+        this.outStack = new Stack();
         this.front = null;
         this.back = null;
-        this.length = 0
     }
 
     enqueue(val){
@@ -95,27 +94,29 @@ class StackQueue {
             this.back = newNode
             temp.next = newNode
         }
-        return ++this.length
+        this.inStack.push(new Node (newNode.value))
+        return this.size()
     }
 
     dequeue(){
-        let temp = this.front;
         if (this.length === 0) return null;
         if (this.front === this.back) {
             this.back = null;
             this.front = null;
-            this.length --;
-            return temp;
         }else {
             this.front = this.front.next;
-            this.length --;
-            return temp;
         }
-        
+        if (this.outStack.size() === 0){
+            while (this.inStack.size() > 0) {
+                this.outStack.push(this.inStack.pop())
+            } 
+        }
+        let x = this.outStack.pop()
+        return x
     }
 
     size(){
-        return this.length
+        return this.inStack.size() + this.outStack.size()
     }
 
 };

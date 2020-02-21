@@ -77,27 +77,28 @@ class MinMaxStack {
         this.top = null;
         this.bottom = null;
         this.length = 0;
-        this.minimum = [];
-        this.maximum = [];
+        this.minValueStorage = [];
+        this.maxValueStorage = [];
 
     };
 
     push(val) {
-        const newNode = new Node(val);
+        const newNode = new Node(val);  
+
+        if (this.minValueStorage.length === 0 || newNode.value <= this.minValueStorage[this.minValueStorage.length - 1].value) {
+            this.minValueStorage.push(newNode)
+        }
+        if (this.maxValueStorage.length === 0 || newNode.value >= this.maxValueStorage[this.maxValueStorage.length - 1].value) {
+            this.maxValueStorage.push(newNode)
+        }
+
         if (!this.top) {
             this.top = newNode;
             this.bottom = newNode;
-            this.minimum.unshift(newNode);
-            this.maximum.unshift(newNode);
         } else {
             const temp = this.top;
             this.top = newNode;
             this.top.next = temp;
-            if (val <= this.minimum[0].value) {
-                this.minimum.unshift(newNode);
-            } else if (val >= this.maximum[this.maximum.length-1].value){
-                this.maximum.push(newNode);
-            }
         }       
         return ++this.length;
     };
@@ -111,10 +112,12 @@ class MinMaxStack {
             this.bottom = null;
         }
 
-        if (this.top.value === this.maximum[this.length-1].value){
-            this.maximum.pop();
-        } else if (this.top.value === this.minimum[0].value){
-            this.minimum.shift();
+        if (this.top.value === this.maxValueStorage[this.maxValueStorage.length-1].value){
+            this.maxValueStorage.pop();
+        } 
+        
+        if (this.top.value === this.minValueStorage[this.minValueStorage.length-1].value){
+            this.minValueStorage.pop();
         }
         this.top = this.top.next;
         this.length--;
@@ -122,17 +125,11 @@ class MinMaxStack {
     };
 
     min() {
-        if (this.length === 0) {
-            return null;
-        }
-        return this.minimum[0];
+        return this.minValueStorage[this.minValueStorage.length - 1] || null;
     };
 
     max() {
-        if (this.length ===0) {
-            return null;
-        }
-        return this.maximum[this.maximum.length-1];
+        return this.maxValueStorage[this.maxValueStorage.length - 1] || null ;
     };
 
     size() {

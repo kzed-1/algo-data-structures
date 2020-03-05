@@ -16,4 +16,44 @@
 
 var findKthLargest = function (nums, k) {
 
+    //heapify the array
+    for (let i = nums.length - 1; i >= 0; i--) {
+        heapify(nums, nums.length, i)
+    }
+
+    for (let endOfHeaps = nums.length - 1; endOfHeaps >= 0; endOfHeaps--) {
+       swap(nums, endOfHeaps, 0);
+       heapify(nums, endOfHeaps, 0);
+   }
+
+   return nums[nums.length - k]
 };
+
+function swap(array, i, j) {
+    [array[i], array[j]] = [array[j], array[i]]
+}
+
+function heapify(array, n, i) {
+    let leftIdx = i * 2 + 1;
+    let rightIdx = i * 2 + 2;
+
+    let leftVal = array[leftIdx];
+    let rightVal = array[rightIdx];
+
+    if (leftIdx >= n) leftVal = -Infinity
+    if (rightIdx >= n) rightVal = -Infinity
+
+    if (leftVal < array[i] && rightVal < array[i]) return;
+
+    let swapIdx;
+
+    if (leftVal > rightVal) {
+        swapIdx = leftIdx;
+    } else {
+        swapIdx = rightIdx
+    }
+
+    swap(array, i, swapIdx);
+    heapify(array, n, swapIdx);
+}
+

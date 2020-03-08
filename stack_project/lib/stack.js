@@ -21,62 +21,52 @@
 // -----------
 
 class Node {
-    constructor (val, next = null){
-        this.next = next,
-        this.value = val
+    constructor(val, next = null) {
+        this.value = val;
+        this.next = next;
     }
 
 }
 
 class Stack {
-    constructor () {
-        this.bottom = null,
-        this.top = null,
+    constructor() {
+        this.top = null;
+        this.bottom = null;
         this.length = 0;
     }
 
-    push (val) {
-        const node = new Node(val)
-
+    push(val) {
+        let newNode = new Node(val)
         if (this.length === 0) {
-            this.bottom = node 
-            this.top = node
-            this.length ++;
-            return this.length
-        }else {
-            let temp = this.top
-            this.top = node 
-            this.top.next = temp
-            this.length ++;
-            return this.length
+            this.top = newNode;
+            this.bottom = newNode;
+        } else {
+            let temp = this.top;
+            newNode.next = temp;
+            this.top = newNode
         }
 
-    }
-
-    pop () {
-        if(this.length === 0) return null;
-
-        let temp;
-
-        if (this.length === 1){
-            temp = this.bottom
-            this.bottom = null
-            this.top = null;
-            this.length --;
-        }else {
-            temp = this.top
-            this.top = temp.next
-            temp.next = null
-            this.length --;
-        }
-        return temp.value
-    }
-
-    size () {
+        this.length++
         return this.length
     }
 
+    pop() {
+        if (this.length === 0) return null;
 
+        let temp = this.top
+        if (this.length === 1) {
+            this.top = null;
+            this.bottom = null;
+        } else {
+            this.top = this.top.next 
+        }
+        this.length--;
+        return temp.value;
+    }
+
+    size() {
+        return this.length
+    }
 }
 
 exports.Node = Node;

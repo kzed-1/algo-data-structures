@@ -21,7 +21,7 @@
 // -----------
 
 class Node {
-    constructor(val, next){
+    constructor(val, next = null){
         this.value = val,
         this.next = next
     }
@@ -30,47 +30,91 @@ class Node {
 
 class Queue {
     constructor() {
-        this.front = null,
-        this.back = null, 
+        this.front = null;
+        this.back = null;
         this.length = 0;
     }
 
-    enqueue (val) {
-        let node = new Node(val)
-        if(!this.front){
-            this.front = node 
-            this.back = this.front
+    enqueue(val) {
+        let newNode = new Node(val)
+        if (this.length === 0) {
+            this.front = newNode
+            this.back = newNode
         }else {
-            this.back.next = node
-            this.back = node
+            this.back.next = newNode
+            this.back = newNode
         }
-        this.length ++;
+        this.length++
         return this.length
+
     }
 
-    dequeue () {
-        if (!this.front) return null;
-        
-        let temp ;
-        if(this.length === 1){
-            temp = this.front;
+    dequeue() {
+        let removedNode = this.front;
+        if(this.length === 0) {
+            return null;
+        }
+
+        if (this.length === 1) {
             this.front = null;
             this.back = null;
-            this.length --;
-            return temp.value
+        }else {
+            this.front = this.front.next
         }
-
-        temp = this.front
-        this.front = temp.next 
         this.length --;
-        return temp.value
+        return removedNode.value
 
     }
 
-    size () {
+    size() {
         return this.length
     }
+
+
 }
 
 exports.Node = Node;
 exports.Queue = Queue;
+
+
+// constructor() {
+//     this.front = null,
+//         this.back = null,
+//         this.length = 0;
+// }
+
+// enqueue(val) {
+//     let node = new Node(val)
+//     if (!this.front) {
+//         this.front = node
+//         this.back = this.front
+//     } else {
+//         this.back.next = node
+//         this.back = node
+//     }
+//     this.length++;
+//     return this.length
+// }
+
+// dequeue() {
+//     if (!this.front) return null;
+
+//     let temp;
+//     if (this.length === 1) {
+//         temp = this.front;
+//         this.front = null;
+//         this.back = null;
+//         this.length--;
+//         return temp.value
+//     }
+
+//     temp = this.front
+//     this.front = temp.next
+//     this.length--;
+//     return temp.value
+
+// }
+
+// size() {
+//     return this.length
+// }

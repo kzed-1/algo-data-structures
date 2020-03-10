@@ -77,45 +77,94 @@ class Stack {
 
 class StackQueue {
     // TODO: Implement the StackQueue class!
-    constructor(){
-        this.inStack = new Stack();
-        this.outStack = new Stack();
+    // constructor(){
+    //     this.inStack = new Stack();
+    //     this.outStack = new Stack();
+    //     this.front = null;
+    //     this.back = null;
+    // }
+
+    // enqueue(val){
+    //     let newNode = new Node(val)
+    //     if (this.front === null) {
+    //         this.back = newNode
+    //         this.front = this.back
+    //     }else {
+    //         let temp = this.back 
+    //         this.back = newNode
+    //         temp.next = newNode
+    //     }
+    //     this.inStack.push(new Node (newNode.value))
+    //     return this.size()
+    // }
+
+    // dequeue(){
+    //     if (this.length === 0) return null;
+    //     if (this.front === this.back) {
+    //         this.back = null;
+    //         this.front = null;
+    //     }else {
+    //         this.front = this.front.next;
+    //     }
+    //     if (this.outStack.size() === 0){
+    //         while (this.inStack.size() > 0) {
+    //             this.outStack.push(this.inStack.pop())
+    //         } 
+    //     }
+    //     let x = this.outStack.pop()
+    //     return x
+    // }
+
+    // size(){
+    //     return this.inStack.size() + this.outStack.size()
+    // }
+
+
+    constructor() {
         this.front = null;
         this.back = null;
+        this.inStack = new Stack()
+        this.outStack = new Stack()
     }
 
-    enqueue(val){
+    enqueue(val) {
         let newNode = new Node(val)
         if (this.front === null) {
-            this.back = newNode
-            this.front = this.back
-        }else {
-            let temp = this.back 
-            this.back = newNode
-            temp.next = newNode
+            this.front = newNode;
+            this.back = newNode;
+        } else {
+            this.back.next = newNode;
+            this.back = newNode;
         }
-        this.inStack.push(new Node (newNode.value))
+
+        this.inStack.push(new Node(val))
         return this.size()
     }
 
-    dequeue(){
-        if (this.length === 0) return null;
-        if (this.front === this.back) {
-            this.back = null;
+    dequeue() {
+
+        if (this.front=== null) {
+            return null;
+        } 
+
+        if(this.front === this.back) {
             this.front = null;
+            this.back = null;
         }else {
             this.front = this.front.next;
         }
-        if (this.outStack.size() === 0){
-            while (this.inStack.size() > 0) {
+
+        if (this.outStack.size() === 0) {
+            while(this.inStack.size() > 0) {
                 this.outStack.push(this.inStack.pop())
-            } 
+            }
         }
-        let x = this.outStack.pop()
-        return x
+
+       return  this.outStack.pop()
+  
     }
 
-    size(){
+    size() {
         return this.inStack.size() + this.outStack.size()
     }
 

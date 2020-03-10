@@ -1,5 +1,4 @@
 function breadthFirstArray(root) {
-
     const queue = [root]
 
     const result = []
@@ -13,7 +12,7 @@ function breadthFirstArray(root) {
     // }
     // return result 
 
-    for (let i = 0; i < queue.length; i++){
+    for (let i = 0; i < queue.length; i++) {
         let node = queue[i]
         result.push(node.val)
         if (node.left) queue.push(node.left)

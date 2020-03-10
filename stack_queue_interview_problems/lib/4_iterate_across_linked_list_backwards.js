@@ -42,25 +42,46 @@ function iterateAcrossLinkedListBackwards(linkedList) {
     // return reverse.slice(4)
 
     
-    const stack = new Stack()
-    let reverse = "";
-    let current = linkedList.head
+    // const stack = new Stack()
+    // let reverse = "";
+    // let current = linkedList.head
 
     
-    while (current !== null) {
-        stack.push(current);
+    // while (current !== null) {
+    //     stack.push(current);
+    //     current = current.next
+    // }
+
+    // while (stack.size() > 0) {
+    //     if (stack.size() > 1) {
+    //         reverse += `${(stack.pop().value)} -> `;
+    //     } else {
+    //         reverse += `${(stack.pop().value)}`;
+    //     }
+    // }
+
+    // return reverse
+
+
+    const stack = new Stack()
+    let current = linkedList.head
+    let reverse = ""
+    
+    while (current) {
+        stack.push(current)
         current = current.next
     }
 
-    while (stack.size() > 0) {
+    while(stack.size() > 0) {
         if (stack.size() > 1) {
-            reverse += `${(stack.pop().value)} -> `;
+            reverse += stack.pop().value + " -> "
         } else {
-            reverse += `${(stack.pop().value)}`;
+            reverse += stack.pop().value
         }
     }
 
     return reverse
+
 }
 
 class Node {

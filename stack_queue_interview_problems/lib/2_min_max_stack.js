@@ -64,6 +64,11 @@
 // -----------
 // Let's code!
 // -----------
+
+
+
+
+
 class Node {
     constructor(val) {
         this.value = val;
@@ -72,7 +77,75 @@ class Node {
 }
 
 // Refactor the regular Stack below into a MinMaxStack!
-class MinMaxStack {
+class MinMaxStack { 
+    // constructor() {
+    //     this.top = null;
+    //     this.bottom = null;
+    //     this.length = 0;
+    //     this.minStore = [];
+    //     this.maxStore = [];
+    // }
+
+    // push(val) {
+    //     let newNode = new Node(val)
+
+    //     if (this.minStore.length === 0 || newNode.value <= this.minStore[this.minStore.length - 1].value) {
+    //         this.minStore.push(newNode)
+    //     }
+
+    //     if (this.maxStore.length === 0 || newNode.value >= this.maxStore[this.maxStore.length - 1].value) {
+    //         this.maxStore.push(newNode)
+    //     }
+
+    //     if(this.length === 0){
+    //         this.top = newNode;
+    //         this.bottom = newNode;
+    //     } else {
+    //         newNode.next = this.top;
+    //         this.top = newNode;
+    //     }
+    //     this.length ++;
+    //     return this.length
+
+    // }
+
+    // pop() {
+    //     let removedNode = this.top;
+    //     if(this.length === 0) {
+    //         return null;
+    //     }
+
+    //     if (this.minStore[this.minStore.length - 1] === this.top.value) {
+    //         this.minStore.pop()
+    //     }
+
+    //     if (this.maxStore[this.maxStore.length - 1] === this.top.value) {
+    //         this.maxStore.pop()
+    //     }
+
+    //     if (this.length ===1) {
+    //         this.top = null;
+    //         this.bottom = null;
+    //     } else {
+    //         this.top = this.top.next
+    //     }
+    //     this.length --;
+    //     return removedNode;
+
+    // }
+
+    // size() {
+    //     return this.length
+    // }
+
+    // min() {
+    //     return this.minStore[this.minStore.length - 1] || null;
+    // }
+
+    // max() {
+    //     return this.maxStore[this.maxStore.length - 1] || null;
+    // }
+ 
     constructor() {
         this.top = null;
         this.bottom = null;
@@ -83,7 +156,7 @@ class MinMaxStack {
     };
 
     push(val) {
-        const newNode = new Node(val);  
+        const newNode = new Node(val);
 
         if (this.minValueStorage.length === 0 || newNode.value <= this.minValueStorage[this.minValueStorage.length - 1].value) {
             this.minValueStorage.push(newNode)
@@ -99,7 +172,7 @@ class MinMaxStack {
             const temp = this.top;
             this.top = newNode;
             this.top.next = temp;
-        }       
+        }
         return ++this.length;
     };
 
@@ -112,11 +185,11 @@ class MinMaxStack {
             this.bottom = null;
         }
 
-        if (this.top.value === this.maxValueStorage[this.maxValueStorage.length-1].value){
+        if (this.top.value === this.maxValueStorage[this.maxValueStorage.length - 1].value) {
             this.maxValueStorage.pop();
-        } 
-        
-        if (this.top.value === this.minValueStorage[this.minValueStorage.length-1].value){
+        }
+
+        if (this.top.value === this.minValueStorage[this.minValueStorage.length - 1].value) {
             this.minValueStorage.pop();
         }
         this.top = this.top.next;
@@ -129,7 +202,7 @@ class MinMaxStack {
     };
 
     max() {
-        return this.maxValueStorage[this.maxValueStorage.length - 1] || null ;
+        return this.maxValueStorage[this.maxValueStorage.length - 1] || null;
     };
 
     size() {

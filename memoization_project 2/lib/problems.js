@@ -16,15 +16,14 @@
 // lucasNumberMemo(41)  // => 370248451
 // lucasNumberMemo(42)  // => 599074578
 function lucasNumberMemo(n, memo = {}) {
+    if (memo[n]) return memo[n]
 
-    if (n in memo) return memo[n]
+    if (n===0) return 2;
+    if (n===1) return 1;
 
-    if (n === 0) return 2 
-    if (n === 1) return 1
-
-    memo[n] =lucasNumberMemo(n - 1, memo) + lucasNumberMemo(n - 2, memo)
+    memo[n] = lucasNumberMemo(n-1, memo) + lucasNumberMemo(n-2,memo)
     return memo[n]
-
+ 
 }
 
 
@@ -42,22 +41,40 @@ function lucasNumberMemo(n, memo = {}) {
 // minChange([1, 5, 10, 25], 15)    // => 2, because 10 + 5 = 15
 // minChange([1, 5, 10, 25], 100)   // => 4, because 25 + 25 + 25 + 25 = 100
 function minChange(coins, amount, memo = {}) {
+    
     if (amount in memo) return memo[amount]
-
-    if (amount === 0) return 0
- 
+    if (amount === 0) return 0; 
 
     let numCoins = []
+  
     coins.forEach(coin => {
-
         if (coin <= amount) {
-            numCoins.push(minChange(coins, amount - coin, memo) + 1)
+            numCoins.push(minChange(coins, amount - coin, memo)+1)
         }
-    })
+    });
 
     memo[amount] = Math.min(...numCoins)
     return memo[amount]
 }
+
+// var change = function (amount, coins, memo = {}) {
+//     let key = amount + '-' + coins
+//     if (key in memo) return memo[key]
+
+//     if (amount === 0) return 1;
+//     let coin = coins[coins.length - 1]
+
+//     let total = 0
+
+//     for (let qty = 0; qty * coin <= amount; qty++) {
+//         total += change(amount - coin * qty, coins.slice(0, -1), memo)
+//     }
+
+//     memo[key] = total;
+//     return memo[key]
+
+// };
+
 
 
 module.exports = {

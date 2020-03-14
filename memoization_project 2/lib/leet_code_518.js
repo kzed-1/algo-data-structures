@@ -1,7 +1,9 @@
 // Work through this problem on https://leetcode.com/problems/coin-change-2/ and use the specs given there.
 // Feel free to use this file for scratch work.
 
-// You are given coins of different denominations and a total amount of money.Write a function to compute the number of combinations that make up that amount.You may assume that you have infinite number of each kind of coin.
+// You are given coins of different denominations and a total amount of money.
+// Write a function to compute the number of combinations that make up that amount.
+// You may assume that you have infinite number of each kind of coin.
 
 
 
@@ -26,20 +28,23 @@
 // Input: amount = 10, coins = [10]
 // Output: 1
 
-var change = function (amount, coins, memo = {}) {
-    let key = amount + '-' + coins
-    if (key in memo) return memo[key]
 
+function change(coins, amount, memo={}) {
+    let key = 'coins' + "-" + "amount";
+    
+    if (key in memo) return memo[key];
+
+    let currentCoin = coins[coins.length-1]
     if (amount === 0) return 1;
-    let coin = coins[coins.length - 1]
 
     let total = 0
 
-    for (let qty = 0; qty * coin <= amount; qty++) {
-        total += change(amount - coin * qty, coins.slice(0, -1), memo)
+    for (let qty = 0; qty * currentCoin <= amount; qty++ ) {
+        total += change(coins.slice(0,-1), amount - qty*currentCoin, memo )
     }
 
-    memo[key] = total;
+    memo[key] = total 
+
     return memo[key]
 
-};
+}

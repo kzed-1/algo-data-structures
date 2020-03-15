@@ -34,43 +34,48 @@
 // }
 
 const getIntDigit = (num, place) => {
-    return Math.floor(Math.abs(num) / Math.pow(10, place)) % 10 
+    return Math.floor( Math.abs(num) / Math.pow(10, place)) % 10
 }
 
 const getIntLength = (num) => {
-    return (num === 0) ? 1 : Math.floor(Math.log10(Math.abs(num))) + 1
+    return (num === 0) ? 1 : Math.floor(Math.log10(Math.abs(num))) + 1;
 }
 
 const getMaxDigits = (nums) => {
-    let max = 0;
 
-    for(let i = 0; i < nums.length; i++) {
-        max = Math.max(max, getIntLength(nums[i]))
+    let max = 0
+
+    for (let i = 0; i < nums.length; i++) {
+        if (max <= getIntLength(nums[i])) max = getIntLength(nums[i])
+
     }
 
-    return max
+    return max;
 }
 
 
+
 function radixSort(arr) {
+
     if (!Array.isArray(arr)) {
         return null;
     }
 
     let maxDigits = getMaxDigits(arr);
 
-    for (let k = 0; k < maxDigits; k++) {
-        let buckets = Array.from({length: 10}, () => []);
-     
+    for(let k = 0; k < maxDigits; k++) {
+        let buckets = Array.from({length: 10}, () =>[])
+
         for (let i = 0; i < arr.length; i++) {
-            let digit = getIntDigit(arr[i], k);
+            let digit = getIntDigit(arr[i], k)
             buckets[digit].push(arr[i])
         }
 
         arr = [].concat(...buckets)
     }
 
-    return arr
+    return arr;
+
 }
 
 

@@ -22,22 +22,24 @@
 
 
 function quickSort(array) {
+
     if (array.length <= 1) return array;
 
-    let pivot = array.shift();
+    let probe = array[0]
 
-    let left = [];
-    let right = [];
-
-    for(let i = 0; i < array.length; i++) {
-        if (array[i] >= pivot) {
-            right.push(array[i])
-        } else {
+    let left = []
+    let right = []
+    
+    for (let i = 1; i < array.length; i++) {
+        if (array[i] < probe) {
             left.push(array[i])
+        } else {
+            right.push(array[i])
         }
     }
 
-    return [...quickSort(left), pivot, ...quickSort(right)]
+    return quickSort(left).concat(probe).concat(quickSort(right))
+
 }
 
 

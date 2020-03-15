@@ -58,3 +58,22 @@ describe('countingSort', () => {
         expect(countingSort(input, 100)).to.eql(expected);
     });
 });
+
+// function countingSort(arr, max) {
+//     if (arr.length <= 1) return arr;
+//     let counters = new Array(max + 1).fill(0);
+//     let result = []
+
+//     for (let i = 0; i < arr.length; i++) {
+//         counters[arr[i]]++;
+//     }
+
+//     for (let i = 0; i < counters.length; i++) {
+//         while (counters[i] > 0) {
+//             result.push(i)
+//             counters[i]--;
+//         }
+//     }
+
+//     return result
+// }

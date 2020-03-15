@@ -19,21 +19,25 @@
 
 function countingSort(arr, max) {
     if (arr.length <= 1) return arr;
-    let counters = new Array(max+1).fill(0);
+
     let result = []
+    
+    let counter = new Array(max+1).fill(0)
 
     for (let i = 0; i < arr.length; i++) {
-        counters[arr[i]] ++;
+        counter[arr[i]]++;
     }
 
-    for (let i = 0; i < counters.length; i++) {
-        while (counters[i] > 0) {
+    for (let i = 0; i < counter.length; i++) {
+        while(counter[i]) {
             result.push(i)
-            counters[i] --;
+            counter[i]--;
         }
     }
 
-    return result
+    return result;
+
+
 }
 
 

@@ -33,14 +33,17 @@
 
 
 function binarySearch (array, target) {
-    if (array.length === 0) return false 
+    if (array.length === 0) return false;
 
-    let midIdx = Math.floor(array.length/2);
+    let midIdx = Math.floor(array.length/2) 
+
+    let left = array.slice(0,midIdx)
+    let right = array.slice(midIdx+1)
 
     if (array[midIdx] > target) {
-        return binarySearch(array.slice(0,midIdx), target)
+        return binarySearch(left, target)
     } else if (array[midIdx] < target) {
-        return binarySearch(array.slice(midIdx+1), target)
+        return binarySearch(right, target)
     } else {
         return true 
     }
@@ -48,18 +51,20 @@ function binarySearch (array, target) {
 }
 
 function binarySearchIndex(array, target, hi = array.length - 1 , lo = 0) {
+
     if (hi === lo) return -1;
 
-    let midIdx = Math.floor((hi + lo)/2);
-
+    let midIdx = Math.floor((hi+lo)/2);
 
     if (array[midIdx] > target) {
-        return binarySearchIndex(array, target, midIdx, lo)
+        return binarySearchIndex(array, target, hi = midIdx, lo)
     } else if (array[midIdx] < target) {
-        return binarySearchIndex(array, target, hi, midIdx+1)
+        return binarySearchIndex(array, target, hi, lo = midIdx+1)
     } else {
-        return midIdx
+        return midIdx 
     }
+
+
 }
 
 module.exports = {

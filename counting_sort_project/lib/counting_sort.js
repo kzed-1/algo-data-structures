@@ -36,8 +36,6 @@ function countingSort(arr, max) {
     }
 
     return result;
-
-
 }
 
 

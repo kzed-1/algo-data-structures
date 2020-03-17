@@ -39,3 +39,34 @@ describe('binarySearchIndex', () => {
         });
     });
 });
+
+
+// function binarySearch(array, target) {
+//     if (array.length === 0) return false
+
+//     let midIdx = Math.floor(array.length / 2);
+
+//     if (array[midIdx] > target) {
+//         return binarySearch(array.slice(0, midIdx), target)
+//     } else if (array[midIdx] < target) {
+//         return binarySearch(array.slice(midIdx + 1), target)
+//     } else {
+//         return true
+//     }
+
+// }
+
+// function binarySearchIndex(array, target, hi = array.length - 1, lo = 0) {
+//     if (hi === lo) return -1;
+
+//     let midIdx = Math.floor((hi + lo) / 2);
+
+
+//     if (array[midIdx] > target) {
+//         return binarySearchIndex(array, target, midIdx, lo)
+//     } else if (array[midIdx] < target) {
+//         return binarySearchIndex(array, target, hi, midIdx + 1)
+//     } else {
+//         return midIdx
+//     }
+// }

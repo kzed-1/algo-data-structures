@@ -7,8 +7,56 @@ let graph = {
     'f': { 'c': 4, 'e': 9 }
 };
 
+//distance 
+//
 
 function dijkstras(graph, source) {
     
+    let distance = {};
+
+    for (let node in graph) {
+        distance[node] = Infinity;
+    }
+
+    distance[source] = 0;
+
+    let unvisited = new Set(Object.keys(graph))
+
+    let previous = {};
+
+    while (unvisited.length > 0) {
+        let currNode = minDistanceNode(unvisited, distance);
+
+        unvisited.delete(currNode);
+
+        for (let neighbor in graph[currNode]) {
+            let distanceToNeighbor = graph[currNode][neighbor];
+            let totalDistance = distanceToNeighbor + distance[currNode];
+
+            if (totalDistance < distance[neighbor]) {
+                distance[neighbor] = totalDistance;
+                previous[neighbor] = currNode;
+            }
+
+
+        }
+
+    }
+
+    return {distance, previous}
+    
+    
 
 }
+
+
+function minDistanceNode(nodes, distance) {
+    return Array.from(nodes).reduce((minNode, node) => (
+        distance[node] < distance[minNode] ? node : minNode
+    ));
+}
+
+let { distance, previous } = dijkstras(graph, 'a');
+
+console.log(distance);
+console.log(previous);

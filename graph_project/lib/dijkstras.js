@@ -20,13 +20,12 @@ function dijkstras(graph, source) {
 
     distance[source] = 0;
 
-    let unvisited = new Set(Object.keys(graph))
+    let unvisited = new Set(Object.keys(graph));
 
     let previous = {};
 
-    while (unvisited.length > 0) {
+    while (unvisited.size > 0) {
         let currNode = minDistanceNode(unvisited, distance);
-
         unvisited.delete(currNode);
 
         for (let neighbor in graph[currNode]) {
@@ -37,16 +36,10 @@ function dijkstras(graph, source) {
                 distance[neighbor] = totalDistance;
                 previous[neighbor] = currNode;
             }
-
-
         }
-
     }
 
     return {distance, previous}
-    
-    
-
 }
 
 

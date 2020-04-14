@@ -38,7 +38,34 @@ function isPermutation(str1, str2) {
 
     if (str1.length != str2.length) return false 
 
-    return str1.split("").sort().join("") == str2
+    return str1.split("").sort().join("") === str2 // big O depends on the sorting algo
 }
 
-console.log(isPermutation("ca", "abc"))
+function isPermutation2(str1, str2) { 
+
+    if (str1.length != str2.length) return false;
+
+    const hash1 = {};
+
+    for(let i = 0; i < str1.length; i++) {
+        if (hash1[str1[i]]) {
+            hash1[str1[i]] += 1;
+        } else {
+            hash1[str1[i]] = 1;
+        }
+    }
+
+    for (let i = 0; i < str2.length; i++) {
+        if (hash1[str2[i]]) {
+            hash1[str1[i]] -= 1;
+        } else {
+            return false 
+        }
+    }
+
+    return Object.values(hash1).filter(num => num != 0).length === 0 
+    // time: O(n)
+    // space: O(1) because we know there are only 128 cahracters
+}
+
+console.log(isPermutation2("abcc", "abc"))

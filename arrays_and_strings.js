@@ -68,8 +68,37 @@ function isPermutation2(str1, str2) {
     // space: O(1) because we know there are only 128 cahracters
 }
 
-console.log(isPermutation2("abcc", "abc"))
+// console.log(isPermutation2("abcc", "abc"))
 
-function urlify() {
+// URLify: Write a method to replace all spaces in a string with '%20'.You may assume that the string
+// has sufficient space at the end to hold the additional characters, and that you are given the "true"
+// length of the string. (Note: If implementing in Java, please use a character array so that you can
+// perform this operation in place.)
+// EXAMPLE
+// Input: "Mr John Smith ", 13
+// Output: "Mr%20John%20Smith"
+
+
+// iterate through string length 
+// check if the char is a space, if so, replace with %20
+function urlify(str, length) {
     
+    let newStr = ""
+    for (let i = 0; i < length; i++) {
+        if (str[i] === " ") {
+            newStr += "%20";
+        } else {
+            newStr += str[i];
+        }
+
+    }
+
+    return newStr;
 }
+
+// console.log(urlify("Mr John Smith ", 13))
+
+// time: O(n)
+// space = O(n)
+
+test

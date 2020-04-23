@@ -101,3 +101,23 @@ function urlify(str, length) {
 // time: O(n)
 // space = O(n)
 
+function iterBSearch (arr, target) {
+    
+    let min = 0;
+    let max = arr.length - 1;
+
+    let midIndex = Math.floor(max/2)
+    let guess = arr[midIndex]
+
+    if (guess > target) {
+        max = midIndex
+    } else if (guess === target) {
+        return true 
+    } else {
+        min = midIndex
+    }
+
+    return false 
+}
+const nums = [1,2,3,4,5,6]
+console.log(iterBSearch(nums, 7))

@@ -109,15 +109,18 @@ function iterBSearch (arr, target) {
     let midIndex = Math.floor(max/2)
     let guess = arr[midIndex]
 
-    if (guess > target) {
-        max = midIndex
-    } else if (guess === target) {
-        return true 
-    } else {
-        min = midIndex
+    while (min < max) {
+        if (guess > target) {
+            max = midIndex
+        } else if (guess === target) {
+            return true 
+        } else {
+            min = midIndex
+        }
     }
 
     return false 
 }
 const nums = [1,2,3,4,5,6]
-console.log(iterBSearch(nums, 7))
+console.log(iterBSearch(nums, 4))
+

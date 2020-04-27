@@ -36,3 +36,38 @@
 // Here we've simplified our times down to the number of 30-minute slots past 9:00 am. 
 // But we want the function to work even for very large numbers, like Unix timestamps. 
 // In any case, the spirit of the challenge is to merge meetings where startTime and endTime don't have an upper bound.
+
+function mergeCal(arr) {
+
+    let result = [];
+
+    for (let i = 0; i < arr.length; i++) {
+        let iStart = arr[i].startTime;
+        let iEnd = arr[i].endTime;
+
+        for (let j = i + 1; j < arr.length; j++) {
+            let jStart = arr[j].startTime;
+            let jEnd = arr[j].endTime;
+
+            let first, second;
+             
+            if (iStart > jStart) {
+                first = arr[j];
+                second = arr[i];
+            } else {
+                first = arr[i];
+                second = arr[j];
+            }
+
+            if (first.endTime >= second.startTime) {
+                let mergeTime = { startTime: first.startTime, endTime: (first.endTime > second.endTime) ? first.startTime : second.endTime};
+                result.push(mergeTime);
+            }
+
+        }
+
+        result.push(arr[i])
+    }
+
+    return result;
+}

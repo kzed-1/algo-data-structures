@@ -106,21 +106,61 @@ function iterBSearch (arr, target) {
     let min = 0;
     let max = arr.length - 1;
 
-    let midIndex = Math.floor(max/2)
-    let guess = arr[midIndex]
-
+    
     while (min < max) {
-        if (guess > target) {
-            max = midIndex
+        const distance = max - min
+        let halfdistance = Math.floor(distance/2)
+        let guessIdx = min + halfdistance
+        const guess = arr[guessIdx]
+
+        if (guess < target) {
+            min = guessIdx
         } else if (guess === target) {
             return true 
         } else {
-            min = midIndex
+            max =  guessIdx
         }
     }
 
     return false 
 }
-const nums = [1,2,3,4,5,6]
-console.log(iterBSearch(nums, 4))
+// const nums = [1,2,3,4,5,6]
+// console.log(iterBSearch(nums, 4))
+
+
+function mergeSort(arr) {
+
+    if (arr.length < 2) return arr
+
+    let midIdx = Math.floor(arr.length / 2)
+
+    let left = mergeSort(arr.slice(0, midIdx));
+    let right = mergeSort(arr.slice(midIdx));
+
+    return merge(left, right)
+}
+
+function merge(arr1, arr2) {
+    const sorted = [];
+
+    while (arr1.length || arr2.length) {
+        let ele1 = arr1.length ? arr1[0] : Infinity
+        let ele2 = arr2.length ? arr2[0] : Infinity
+
+        let push;
+
+        if (ele1 > ele2) {
+            push = arr2.shift()
+        } else {
+            push = arr1.shift()
+        }
+        sorted.push(push)
+    }
+
+    return sorted
+}
+
+const unsorted = [6,2,9,7,5,3,0,1]
+
+console.log(mergeSort(unsorted))
 

@@ -41,6 +41,8 @@ function mergeCal(arr) {
 
     let result = [];
 
+    let mergedhappened = false
+
     for (let i = 0; i < arr.length; i++) {
         let iStart = arr[i].startTime;
         let iEnd = arr[i].endTime;
@@ -48,6 +50,7 @@ function mergeCal(arr) {
         for (let j = i + 1; j < arr.length; j++) {
             let jStart = arr[j].startTime;
             let jEnd = arr[j].endTime;
+            
 
             let first, second;
              
@@ -61,13 +64,15 @@ function mergeCal(arr) {
 
             if (first.endTime >= second.startTime) {
                 let mergeTime = { startTime: first.startTime, endTime: (first.endTime > second.endTime) ? first.startTime : second.endTime};
-                result.push(mergeTime);
-            }
-
+                result.push(mergeTime); 
+                mergedhappened = true
+            } 
         }
 
-        result.push(arr[i])
-    }
+        if (!mergedhappened) {
+            result.push(arr[i])
+        }
+     }
 
     return result;
 }

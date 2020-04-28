@@ -37,7 +37,7 @@
 // But we want the function to work even for very large numbers, like Unix timestamps. 
 // In any case, the spirit of the challenge is to merge meetings where startTime and endTime don't have an upper bound.
 
-function mergeCal(arr) {
+function mergeCal(arr) { //O(n^2)
 
     let result = [];
 
@@ -77,6 +77,30 @@ function mergeCal(arr) {
     return result;
 }
 
+
+
+function mergeCal2(arr) { // O(nlog n)
+
+    const meetingsCopy = JSON.parse(JSON.stringify(arr));
+
+    let sorted = meetingsCopy.sort((a,b) => a.startTime - b.startTime)
+
+    const mergedMeetings = [sorted[0]]
+
+    for (let i = 1; i < sorted.length; i++) {
+        let current = sorted[i];
+        let lastmergedMeeting = mergedMeetings[mergedMeetings.length-1];
+
+        if (current.startTime <= lastmergedMeeting.endTime) {
+            lastmergedMeeting.endTime = Math.max(lastmergedMeeting.endTime, current.endTime)
+        } else {
+            mergedMeetings.push(current)
+        }
+    }
+
+    return mergedMeetings
+}
+
 let cal = [
     { startTime: 0, endTime: 1 },
     { startTime: 3, endTime: 5 },
@@ -86,5 +110,5 @@ let cal = [
 ]
 
 
-console.log(mergeCal(cal));
+console.log(mergeCal2(cal));
 

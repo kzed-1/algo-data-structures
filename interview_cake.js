@@ -125,4 +125,31 @@ let cal = [
 
 function reverseInPlace(chars) {
 
+    midIndex = Math.floor(char.length/2)
+    let even = chars.length % 2 === 0
+
+
+    if (even) {
+        for(let i = 0; i <= midIndex; i++) {
+            let front = chars[i];
+            let back = chars[chars.length-1-i];
+
+            [front, back] = [back, front]
+        }
+    } else {
+        for (let i = 0; i < midIndex; i++) {
+            let front = chars[i];
+            let back = chars[chars.length - 1 - i];
+
+            [front, back] = [back, front]
+        }
+    }
+
+    return chars
 }
+
+let strArr = 'hello'.split("")
+let strArr2 = 'help'.split("")
+
+console.log(reverseInPlace(strArr))
+console.log(reverseInPlace(strArr2))

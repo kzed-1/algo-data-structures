@@ -123,33 +123,89 @@ let cal = [
 // instead of JavaScript's immutable strings.
 
 
-function reverseInPlace(chars) {
+function reverseInPlace(chars) { // o(n)t o(1)s
 
-    midIndex = Math.floor(char.length/2)
-    let even = chars.length % 2 === 0
+    midIndex = Math.floor(chars.length/2)
 
 
-    if (even) {
-        for(let i = 0; i <= midIndex; i++) {
-            let front = chars[i];
-            let back = chars[chars.length-1-i];
+    for(let i = 0; i < midIndex; i++) {
+        let front = chars[i];
+        let back = chars[chars.length-1-i];
 
-            [front, back] = [back, front]
-        }
-    } else {
-        for (let i = 0; i < midIndex; i++) {
-            let front = chars[i];
-            let back = chars[chars.length - 1 - i];
-
-            [front, back] = [back, front]
-        }
+        let temp = front 
+        chars[i] = back;
+        chars[chars.length - 1 - i] = temp 
     }
 
     return chars
 }
 
-let strArr = 'hello'.split("")
-let strArr2 = 'help'.split("")
+// let strArr = 'helop'.split("")
+// let strArr2 = 'help'.split("")
 
-console.log(reverseInPlace(strArr))
-console.log(reverseInPlace(strArr2))
+// console.log(reverseInPlace(strArr))
+// console.log(reverseInPlace(strArr2))
+
+// function reverseWords(arr) {
+//     let words = arr.join("").split(" ")
+//     let front = 0;
+//     let back = words.length - 1
+
+//     while (front < back) {
+//         let temp = words[front];
+
+//         words[front] = words[back]
+//         words[back] = temp
+
+//         front ++;
+//         back --;
+//     }
+
+//    return words.join(" ")
+
+// }
+
+function reverse(chars, startIdx, endIdx) {
+
+    let front = startIdx;
+    let back = endIdx
+
+    while (front < back) {
+        let temp = chars[front];
+
+        chars[front] = chars[back]
+        chars[back] = temp
+
+        front ++;
+        back --;
+    }
+}
+
+function reverseInPlace(arr) {
+
+    reverse(arr, 0, arr.length-1);
+
+
+
+    let currentwordStartIdx = 0;
+    for (let i = 0; i <= arr.length; i++) {
+
+        if (i === arr.length || arr[i] === " ") {
+            reverse(arr, currentwordStartIdx, i - 1);
+            currentwordStartIdx = 1 + i
+        }
+    }
+
+    return arr.join(" ")
+    
+}
+
+
+
+
+const message = ['c', 'a', 'k', 'e', ' ',
+    'p', 'o', 'u', 'n', 'd', ' ',
+    's', 't', 'e', 'a', 'l'];
+
+console.log(reverseInPlace(message))
+

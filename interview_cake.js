@@ -229,13 +229,20 @@ function mergeArrays(arr1, arr2) {
 
     const merged = [];
 
-    const longestArr = (arr1.length > arr2.length) ? arr1.length : arr2.length
-
-    for (let i = 0; i < longestArr; i++) {
+    while (arr1.length || arr2.length) {
         const ele1 = (arr1[0]) ? arr1[0] : Infinity
         const ele2 = (arr2[0]) ? arr2[0] : Infinity
     
-        let nextEle = (ele1 > ele2) ? ele2.shift() : ele1.shift()
+        let nextEle 
+        
+        if (ele1 > ele2) {
+            nextEle = arr2.shift() 
+        } else if (ele1 === ele2) {
+            nextEle = arr1.shift()
+            arr2.shift()
+        } else {
+            nextEle = arr1.shift()
+        }
     
         merged.push(nextEle)
     }
@@ -244,6 +251,34 @@ function mergeArrays(arr1, arr2) {
     
 }
 
-console.log(mergeArrays(myArray, alicesArray));
+// console.log(mergeArrays(myArray, alicesArray));
 
+function mergeArrays2(arr1, arr2) {
 
+    const merged = [];
+
+    let currentArr1Idx = 0;
+    let currentArr2Idx = 0;
+    let currentMergedIdx = 0;
+
+    while (currentMergedIdx < (arr1.length + arr2.length)) {
+
+        const arr1Exhausted = currentArr1Idx >= arr1.length 
+        const arr2Exhausted = currentArr2Idx >= arr2.length 
+
+        if ( !arr2Exhausted && ( arr1Exhausted || arr1[currentArr1Idx] > arr2[currentArr2Idx])) {
+            merged[currentMergedIdx] = arr2[currentArr2Idx]
+            currentArr2Idx++
+            
+        } else {
+            merged[currentMergedIdx] = arr1[currentArr1Idx]
+            currentArr1Idx++
+        }
+
+        currentMergedIdx++
+    }
+
+    return merged
+}
+
+console.log(mergeArrays2(myArray, alicesArray));

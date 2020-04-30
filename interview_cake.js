@@ -319,4 +319,35 @@ function mergeArrays2(arr1, arr2) {
 // Served Orders: [1, 2, 3, 5, 4, 6]
 // would be first - come, first - served.
 
+function checkOrder(takeOutOrders, dineInOrders, servedOrders) {
 
+    const mergedOrder = [];
+
+    let currMergedIdx = 0;
+    let currTOIdx = 0;
+    let currDIIdx = 0;
+
+    while(mergedOrder.length < dineInOrders.length + takeOutOrders.length) {
+
+        const TOExhausted = currTOIdx >= takeOutOrders.length
+        const DIExhausted = currDIIdx >= dineInOrders.length
+
+        if ( !TOExhausted && ( DIExhausted || takeOutOrders[currTOIdx] < dineInOrders[currTOIdx])) {
+            mergedOrder[currMergedIdx] = takeOutOrders[currTOIdx]
+            currTOIdx++
+        } else {
+            mergedOrder[currMergedIdx] = dineInOrders[currDIIdx]
+            currDIIdx++
+        }
+        currMergedIdx++
+    }
+
+    return mergedOrder
+}
+
+
+const tOO = [1, 3, 5];
+const dIO = [2, 4, 6];
+const sO = [1, 2, 4, 6, 5, 3];
+
+console.log(checkOrder(tOO, dIO))

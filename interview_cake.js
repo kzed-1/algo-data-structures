@@ -321,33 +321,32 @@ function mergeArrays2(arr1, arr2) {
 
 function checkOrder(takeOutOrders, dineInOrders, servedOrders) {
 
-    const mergedOrder = [];
+    let takeOutOrdersIdx = 0;
+    let dineInOrdersIdx = 0;
 
-    let currMergedIdx = 0;
-    let currTOIdx = 0;
-    let currDIIdx = 0;
-
-    while(mergedOrder.length < dineInOrders.length + takeOutOrders.length) {
-
-        const TOExhausted = currTOIdx >= takeOutOrders.length
-        const DIExhausted = currDIIdx >= dineInOrders.length
-
-        if ( !TOExhausted && ( DIExhausted || takeOutOrders[currTOIdx] < dineInOrders[currTOIdx])) {
-            mergedOrder[currMergedIdx] = takeOutOrders[currTOIdx]
-            currTOIdx++
+   for (let i = 0; i < servedOrders.length; i++) {
+       let currentOrder = servedOrders[i]
+       if (takeOutOrders[takeOutOrdersIdx] && currentOrder === takeOutOrders[takeOutOrdersIdx]) {
+            takeOutOrdersIdx++
+       } else if (dineInOrders[dineInOrdersIdx] && currentOrder === dineInOrders[dineInOrdersIdx]) {
+            dineInOrdersIdx++
         } else {
-            mergedOrder[currMergedIdx] = dineInOrders[currDIIdx]
-            currDIIdx++
+            return false
         }
-        currMergedIdx++
-    }
+   }
 
-    return mergedOrder
+   if (takeOutOrdersIdx != takeOutOrders.length || dineInOrdersIdx != dineInOrders.length) {
+       return false 
+   }
+
+   return true 
+
 }
 
 
 const tOO = [1, 3, 5];
 const dIO = [2, 4, 6];
 const sO = [1, 2, 4, 6, 5, 3];
+const sO2 = [1, 2, 3, 5, 4, 6];
 
-console.log(checkOrder(tOO, dIO))
+console.log(checkOrder(tOO, dIO, sO2))

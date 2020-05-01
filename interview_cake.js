@@ -434,7 +434,7 @@ function isPalindrome(str) {
 function hasPalindrome(str) {
     
     let charCount = {};
-    let singleCharCount = 0;
+    let oddCount = 0
 
     for (let i = 0; i < str.length; i++) {
         let char = str[i]
@@ -442,16 +442,41 @@ function hasPalindrome(str) {
         if (charCount[char]) {
             charCount[char] += 1
         } else {
-            charCount[char] = 0
+            charCount[char] = 1
         }
     }
 
     for (let char in charCount) {
-        if (singleCharCount > 1) return false  
 
-        if (charCount[char] === 1) {
-            singleCharCount ++
+        if (charCount[char] % 2 != 0) {
+            oddCount += 1
         }
     }
 
+    return  oddCount <= 1
 }
+
+function hasPalindrome2(str) { // time and space = O(n) 
+    // space can be O(k) or O(1)
+    // this depends on what you consider a character
+    // in ASCII there are 128 diff chars 
+    // in unicode 110,000
+
+    let unpairedChar = new Set();
+
+    for (let i = 0; i < str.length; i++) {
+        let char = str[i]
+        if (unpairedChar.has(char)) {
+            unpairedChar.delete(char)
+        } else {
+            unpairedChar.add(char)
+        }
+    }
+
+    return unpairedChar.size <= 1;
+}
+
+console.log(hasPalindrome2('ivicc'))
+console.log(hasPalindrome2('civic'))
+console.log(hasPalindrome2('civil'))
+console.log(hasPalindrome2('livci'))

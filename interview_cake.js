@@ -406,4 +406,52 @@ function moviePick2(flightLength, movieLengths) { // O(n) space and time
     return false
 }
 
-console.log(moviePick2(300, movies))
+// console.log(moviePick2(300, movies))
+
+// Write an efficient function that checks whether any permutation ↴ of an input string is a palindrome.↴
+
+// You can assume the input string only contains lowercase letters.
+
+//     Examples:
+
+// "civic" should return true
+// "ivicc" should return true
+// "civil" should return false
+// "livci" should return false
+
+function isPalindrome(str) {
+    
+    let midIdx = Math.floor(str.length /2)
+    for (let i = 0; i < midIdx; i++) {
+        if (str[i] != str[str.length-1-i]) {
+            return false 
+        }
+    } 
+
+    return true;
+}
+
+function hasPalindrome(str) {
+    
+    let charCount = {};
+    let singleCharCount = 0;
+
+    for (let i = 0; i < str.length; i++) {
+        let char = str[i]
+
+        if (charCount[char]) {
+            charCount[char] += 1
+        } else {
+            charCount[char] = 0
+        }
+    }
+
+    for (let char in charCount) {
+        if (singleCharCount > 1) return false  
+
+        if (charCount[char] === 1) {
+            singleCharCount ++
+        }
+    }
+
+}

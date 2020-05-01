@@ -367,6 +367,16 @@ function checkOrder(takeOutOrders, dineInOrders, servedOrders) {
 // Don't make your users watch the same movie twice
 // Optimize for runtime over memory
 
+let movies = [60, 120, 60, 30, 40, 50, 100, 90]
+
 function moviePick(flightLength, movieLengths) {
-    
+    let set = new Set()
+
+    for (let i = 0; i < movieLengths.length; i++) {
+        set[movieLengths[i]]
+    }
+
+    return set 
 }
+
+console.log(moviePick(120, movies))

@@ -389,7 +389,7 @@ let movies = [60, 120, 60, 30, 40, 50, 100, 90]
 // }
 
 
-function moviePick2(flightLength, movieLengths) {
+function moviePick2(flightLength, movieLengths) { // O(n) space and time 
     let seenMovies = new Set()
 
     for (let i = 0; i < movieLengths.length; i++) {
@@ -406,4 +406,4 @@ function moviePick2(flightLength, movieLengths) {
     return false
 }
 
-console.log(moviePick2(100, movies))
+console.log(moviePick2(300, movies))

@@ -370,13 +370,22 @@ function checkOrder(takeOutOrders, dineInOrders, servedOrders) {
 let movies = [60, 120, 60, 30, 40, 50, 100, 90]
 
 function moviePick(flightLength, movieLengths) {
-    let set = new Set()
+    let set = {}
 
     for (let i = 0; i < movieLengths.length; i++) {
-        set[movieLengths[i]]
+        set[movieLengths[i]] = i
     }
 
-    return set 
+    for (let i = 0; i < movieLengths.length; i++) {
+        let secondMov = flightLength - movieLengths[i]
+        
+        if (set[secondMov] != undefined && set[secondMov] != i) {
+            return true
+        }
+    }
+
+
+    return false
 }
 
-console.log(moviePick(120, movies))
+console.log(moviePick(100, movies))

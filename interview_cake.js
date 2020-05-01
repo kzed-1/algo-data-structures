@@ -369,23 +369,41 @@ function checkOrder(takeOutOrders, dineInOrders, servedOrders) {
 
 let movies = [60, 120, 60, 30, 40, 50, 100, 90]
 
-function moviePick(flightLength, movieLengths) {
-    let set = {}
+// function moviePick(flightLength, movieLengths) {
+//     let set = {}
 
-    for (let i = 0; i < movieLengths.length; i++) {
-        set[movieLengths[i]] = i
-    }
+//     for (let i = 0; i < movieLengths.length; i++) {
+//         set[movieLengths[i]] = i
+//     }
 
-    for (let i = 0; i < movieLengths.length; i++) {
-        let secondMov = flightLength - movieLengths[i]
+//     for (let i = 0; i < movieLengths.length; i++) {
+//         let secondMov = flightLength - movieLengths[i]
         
-        if (set[secondMov] != undefined && set[secondMov] != i) {
-            return true
-        }
-    }
+//         if (set[secondMov] != undefined && set[secondMov] != i) {
+//             return true
+//         }
+//     }
 
+
+//     return false
+// }
+
+
+function moviePick2(flightLength, movieLengths) {
+    let seenMovies = new Set()
+
+    for (let i = 0; i < movieLengths.length; i++) {
+        let firstMovLength = movieLengths[i]
+        let secondMovLength = flightLength - firstMovLength
+
+        if (seenMovies.has(secondMovLength)) {
+            return true 
+        }
+
+        seenMovies.add(firstMovLength)
+    }
 
     return false
 }
 
-console.log(moviePick(100, movies))
+console.log(moviePick2(100, movies))

@@ -344,9 +344,10 @@ function checkOrder(takeOutOrders, dineInOrders, servedOrders) {
 }
 
 
-const tOO = [1, 3, 5];
-const dIO = [2, 4, 6];
-const sO = [1, 2, 4, 6, 5, 3];
-const sO2 = [1, 2, 3, 5, 4, 6];
+// const tOO = [1, 3, 5];
+// const dIO = [2, 4, 6];
+// const sO = [1, 2, 4, 6, 5, 3];
+// const sO2 = [1, 2, 3, 5, 4, 6];
 
-console.log(checkOrder(tOO, dIO, sO2))
+// console.log(checkOrder(tOO, dIO, sO2))
+

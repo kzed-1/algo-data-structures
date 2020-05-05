@@ -36,12 +36,12 @@ function topScores(unorderedScores, highestPossibleScore) {
         scoreCounts[score] += 1
     }
 
-    for (let i = 0; i < scoreCounts.length; i++) {
+    for (let i = scoreCounts.length - 1; i >= 0 ; i--) {
 
         let count = scoreCounts[i];
 
         while (count > 0) {
-            sorted.push(score)
+            sorted.push(i)
             count -= 1
         }
 
@@ -54,4 +54,4 @@ function topScores(unorderedScores, highestPossibleScore) {
 const unsortedScores = [37, 89, 41, 65, 91, 53];
 const HIGHEST_POSSIBLE_SCORE = 100;
 
-console.log(topScores(unorderedScores, HIGHEST_POSSIBLE_SCORE))
+console.log(topScores(unsortedScores, HIGHEST_POSSIBLE_SCORE))

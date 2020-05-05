@@ -18,32 +18,59 @@
 // Assume the input will only contain words and standard punctuation.
 
 function wordCloud(str) {
-    const alpha = "abcdefghijklmnopqrstuvwxyz";
+    const words = {}
+
+    const wordsArr = isWord(str);
+
+    for (let i = 0; i < wordsArr.length; i++) {
+        let word = wordsArr[i]
+        if (!words[word]) {
+            words[word] = 1;
+        } else {
+            words[word] += 1;
+        }
+    }
+
+    return words
 
     
 }
 
 function isWord(str) {
     const words = [];
-    const alpha = "abcdefghijklmnopqrstuvwxyz";
+    const alpha = new Set("abcdefghijklmnopqrstuvwxyz-".split(""))
 
     let currentWord = "";
 
-    for (let i = 0; i < str.length; i++) {
-        let char = str[i];
+    let currentIndex = 0
+
+    while (currentIndex < str.length) {
+        let char = str[currentIndex].toLowerCase();
         
-        if (alpha.includes(char.tolowerCase())) {
+        if (alpha.has(char)) {
             currentWord += char 
+            currentIndex++
         } else {
-            words.push(currentWord)
+            // if (currentWord === "") currentIndex++
+            if (char === "'") {
+                currentIndex++
+            } else if (char === "'" && str[currentIndex+1] === "s") {
+                currentIndex += 2
+            }
+
+            if (currentWord != "") words.push(currentWord)
             currentWord = ""
-            continue
+            currentIndex += 1
         }
     }
 
     return words
 }
 
-const test = "After beating the eggs, Dana read the next step:"
+// const test = "After beating the eggs, Dana read the next step:"
+// const test2 = "Add milk and eggs, then add flour and sugar."
+const test3 = "We came, we saw, we conquered...then we ate Bill's (Mille-Feuille) cake."
+const test4 = "The bill came to five dollars."
 
-console.log(isWord(test))
+console.log(wordCloud(test3))
+console.log(wordCloud(test4))

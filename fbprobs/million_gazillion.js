@@ -16,7 +16,7 @@ class Node {
     }
 }
 
-class Trie {
+class Trie { // space complexity is O(n * m), where m is the chars in a word, and n is the numebr of words worst case is if there are no over laps
     constructor () {
         this.root = new Node();
     }

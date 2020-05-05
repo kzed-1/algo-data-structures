@@ -23,3 +23,35 @@
 // And, we'll treat highestPossibleScore as a constant instead of 
 // factoring it into our big O time and space costs because the highest possible score isn’t going to change. 
 // Even if we do redesign the game a little, the scores will stay around the same order of magnitude.
+
+
+function topScores(unorderedScores, highestPossibleScore) {
+
+    const scoreCounts = new Array(highestPossibleScore + 1).fill(0);
+    const sorted = [];
+    
+    for (let i = 0; i < unorderedScores.length; i++) {
+        let score = unorderedScores[i]
+
+        scoreCounts[score] += 1
+    }
+
+    for (let i = 0; i < scoreCounts.length; i++) {
+
+        let count = scoreCounts[i];
+
+        while (count > 0) {
+            sorted.push(score)
+            count -= 1
+        }
+
+    }
+
+    return sorted
+
+}
+
+const unsortedScores = [37, 89, 41, 65, 91, 53];
+const HIGHEST_POSSIBLE_SCORE = 100;
+
+console.log(topScores(unorderedScores, HIGHEST_POSSIBLE_SCORE))

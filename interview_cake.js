@@ -510,7 +510,7 @@ function getMaxProfit(stockPrices) {
     if(stockPrices.length < 2) {
         throw new Error('Getting a profit requires at least 2 prices');
     }
-    
+
     let min = stockPrices[0];
     let maxDiff = stockPrices[1] - stockPrices[0]
 
@@ -527,7 +527,15 @@ function getMaxProfit(stockPrices) {
     return maxDiff
 }
 
-const stockPrices = [10, 7, 5, 8, 11, 9];
-const stockPrices2 = [10, 5,4,3,2,1];
+// const stockPrices = [10, 7, 5, 8, 11, 9];
+// const stockPrices2 = [10, 5,4,3,2,1];
 
-console.log(getMaxProfit(stockPrices2));
+// console.log(getMaxProfit(stockPrices2));
+
+// Given an array of integers, find the highest product you can get from three of the integers.
+
+// The input arrayOfInts will always have at least three integers.
+
+function maxProduct(arrOfInts) {
+    
+}

@@ -506,23 +506,28 @@ function hasPalindrome2(str) { // time and space = O(n)
 // you can't buy and sell in the same time step—at least 1 minute has to pass.
 
 function getMaxProfit(stockPrices) {
-    let max = 0;
-    let min = 0;
-    let maxDiff = max - min;
 
-    for (let i = 0; i < stockPrices.length; i++) {
-        let price = stockPrices[i];
+    if(stockPrices.length < 2) {
+        throw new Error('Getting a profit requires at least 2 prices');
+    }
+    
+    let min = stockPrices[0];
+    let maxDiff = stockPrices[1] - stockPrices[0]
 
-        if (price < min) {
-            min = price
-        } else if (price > max) {
-            max = price 
-        }
+    for (let i = 1; i < stockPrices.length; i++) {
+        let currPrice = stockPrices[i];
+        let pontentialProfit = currPrice - min
+       
+        maxDiff = Math.max(maxDiff, pontentialProfit)
+
+        min = Math.min(currPrice, min)
+
     }
 
     return maxDiff
 }
 
 const stockPrices = [10, 7, 5, 8, 11, 9];
+const stockPrices2 = [10, 5,4,3,2,1];
 
-console.log(getMaxProfit(stockPrices));
+console.log(getMaxProfit(stockPrices2));

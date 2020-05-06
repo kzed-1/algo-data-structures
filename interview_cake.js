@@ -508,7 +508,21 @@ function hasPalindrome2(str) { // time and space = O(n)
 function getMaxProfit(stockPrices) {
     let max = 0;
     let min = 0;
-    let maxDiff = 0;
+    let maxDiff = max - min;
 
-    
+    for (let i = 0; i < stockPrices.length; i++) {
+        let price = stockPrices[i];
+
+        if (price < min) {
+            min = price
+        } else if (price > max) {
+            max = price 
+        }
+    }
+
+    return maxDiff
 }
+
+const stockPrices = [10, 7, 5, 8, 11, 9];
+
+console.log(getMaxProfit(stockPrices));

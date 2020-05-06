@@ -537,15 +537,27 @@ function getMaxProfit(stockPrices) {
 // The input arrayOfInts will always have at least three integers.
 
 function maxProduct(arrOfInts) {
-    const maxNums = [arrOfInts[0]];
+    const maxNums = [arrOfInts[0], arrOfInts[1], arrOfInts[2]];
+    let maxProduct = maxNums[0] * maxNums[1] * maxNums[2]
+    let product1 = maxNums[0] * maxNums[1]
+    let product2 = maxNums[1] * maxNums[2]
+    let product3 = maxNums[0] * maxNums[2]
 
-    for(let i = 1; i < arrOfInts.length; i++) {
-        if (arrOfInts[i] > maxNums[maxNums.length-1]) {
-            maxNums.push(arrOfInts[i])
+    for(let i = 3; i < arrOfInts.length; i++) {
+        let currentNum = arrOfInts[i]
+       
+        if (currentNum * product1 > maxProduct) {
+            maxNums = [maxNums[0],maxNums[1], currentNum]
+        } else if (currentNum * product2 > maxProduct) {
+            maxNums = [maxNums[2], maxNums[1], currentNum]
+        } else if (currentNum * product3 > maxProduct) {
+            maxNums = [maxNums[2], maxNums[10, currentNum]
         }
+
+
     }
 
-    return maxNums[maxNums.length - 1] * maxNums[maxNums.length - 2] * maxNums[maxNums.length - 3]
+    return maxProduct
 }
 
 const arrOfInts = [2,4,6,9,1,0,34,6]

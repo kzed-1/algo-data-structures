@@ -545,18 +545,20 @@ function maxProduct(arrOfInts) {
         let product1 = maxNums[0] * maxNums[1] * currentNum
         let product2 = maxNums[1] * maxNums[2] * currentNum
         let product3 = maxNums[0] * maxNums[2] * currentNum
-        console.log(maxNums)
-        console.log([product1, product2, product3, maxProduct])
+        // console.log(maxNums)
+        // console.log([product1, product2, product3, maxProduct])
         
-       
-        if ((product1) > maxProduct) {
-            maxNums[2] = currentNum
-        } else if ((product2) > maxProduct) {
-            maxNums[0] = currentNum 
-        } else if ((product3) > maxProduct) {
-            maxNums[1] = currentNum 
-        }
+        const currentProd = Math.max(product1, product2, product3, maxProduct);
 
+        if ( currentProd === product1) {
+            maxNums[2] = currentNum
+        } else if (currentProd === product2) {
+            maxNums[0] = currentNum 
+        } else if (currentProd === product3) {
+            maxNums[1] = currentNum 
+        } else if (currentProd === maxProduct) {
+            continue;
+        }
 
     }
 
@@ -566,9 +568,52 @@ function maxProduct(arrOfInts) {
         product *= maxNums[i]
     }
 
-    return maxNums
+    return product;
 }
 
-const arrOfInts = [2,4,6,9,1,0,34,6]
+function maxProduct2(arrOfInts) {
+    
+    let highest = Math.max(arrOfInts[0],arrOfInts[1]);
+    let lowest = Math.min(arrOfInts[0], arrOfInts[1]);
 
-console.log(maxProduct(arrOfInts));
+    let highestProductOf2 = arrOfInts[0] * arrOfInts[1];
+    let lowestProductOf2 = arrOfInts[0] * arrOfInts[1];
+
+    let highestProductOf3 = arrOfInts[0] * arrOfInts[1] * arrOfInts[2];
+
+    for (let i = 2; i < arrOfInts.length; i++) {
+        const currentNum = arrOfInts[i];
+        
+        highestProductOf3 = Math.max(
+            highestProductOf3,
+            highestProductOf2 * currentNum,
+            lowestProductOf2 * currentNum
+        );
+
+        highestProductOf2 = Math.max(
+            highestProductOf2,
+            currentNum * highest,
+            currentNum * lowest
+        );
+
+        lowestProductOf2 = Math.min(
+            lowestProductOf2,
+            currentNum * highest,
+            currentNum * lowest
+        );
+
+        highest = Math.max(highest, currentNum);
+        lowest = Math.min(lowest, currentNum);
+
+    }
+
+    return highestProductOf3
+}
+
+
+
+const arrayOfInts = [2,4,6,9,1,0,34,6];
+const arrayOfInts2 = [-10, -10, 1, 3, 2];
+const arrayOfInts3 = [1, 10, -5, 1, -100]
+
+console.log(maxProduct2(arrayOfInts3));

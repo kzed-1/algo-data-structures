@@ -538,26 +538,35 @@ function getMaxProfit(stockPrices) {
 
 function maxProduct(arrOfInts) {
     const maxNums = [arrOfInts[0], arrOfInts[1], arrOfInts[2]];
-    let maxProduct = maxNums[0] * maxNums[1] * maxNums[2]
-    let product1 = maxNums[0] * maxNums[1]
-    let product2 = maxNums[1] * maxNums[2]
-    let product3 = maxNums[0] * maxNums[2]
 
     for(let i = 3; i < arrOfInts.length; i++) {
         let currentNum = arrOfInts[i]
+        let maxProduct = maxNums[0] * maxNums[1] * maxNums[2]
+        let product1 = maxNums[0] * maxNums[1] * currentNum
+        let product2 = maxNums[1] * maxNums[2] * currentNum
+        let product3 = maxNums[0] * maxNums[2] * currentNum
+        console.log(maxNums)
+        console.log([product1, product2, product3, maxProduct])
+        
        
-        if (currentNum * product1 > maxProduct) {
-            maxNums = [maxNums[0],maxNums[1], currentNum]
-        } else if (currentNum * product2 > maxProduct) {
-            maxNums = [maxNums[2], maxNums[1], currentNum]
-        } else if (currentNum * product3 > maxProduct) {
-            maxNums = [maxNums[2], maxNums[10, currentNum]
+        if ((currentNum * product1) > maxProduct) {
+            maxNums[2] = currentNum
+        } else if ((currentNum * product2) > maxProduct) {
+            maxNums[0] = currentNum 
+        } else if ((currentNum * product3) > maxProduct) {
+            maxNums[1] = currentNum 
         }
 
 
     }
 
-    return maxProduct
+    let product = 1
+
+    for (let i = 0; i < 3; i++) {
+        product *= maxNums[i]
+    }
+
+    return maxNums
 }
 
 const arrOfInts = [2,4,6,9,1,0,34,6]

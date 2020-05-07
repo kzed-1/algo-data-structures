@@ -549,11 +549,11 @@ function maxProduct(arrOfInts) {
         console.log([product1, product2, product3, maxProduct])
         
        
-        if ((currentNum * product1) > maxProduct) {
+        if ((product1) > maxProduct) {
             maxNums[2] = currentNum
-        } else if ((currentNum * product2) > maxProduct) {
+        } else if ((product2) > maxProduct) {
             maxNums[0] = currentNum 
-        } else if ((currentNum * product3) > maxProduct) {
+        } else if ((product3) > maxProduct) {
             maxNums[1] = currentNum 
         }
 

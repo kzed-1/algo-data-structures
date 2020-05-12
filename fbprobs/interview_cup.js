@@ -30,4 +30,4 @@ const testCases = [
     [1, 50, 900, 1000],
 ];
 
-console.log(splitInTwo(testCases[0]))
+console.log(splitInTwo(testCases[1]))

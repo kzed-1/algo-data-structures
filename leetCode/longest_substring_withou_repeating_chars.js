@@ -23,3 +23,30 @@
 // Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
 
 
+// iterate through string
+// keep track of start of substring and end of substring when it reachs a char that is a repeat 
+// keep track of max count 
+// return maxCount
+
+
+const longestNonReapeatSubstring = (str) => {
+    
+    let hash = {};
+
+    let maxCount = 0
+
+    for (let i = 0; i < str.length; i++) {
+        if (!hash[str[i]]) {
+            hash[str[i]] = true 
+        } else {
+            if (hash.length > maxCount) {
+                maxCount = hash.length
+                hash = {};
+            }
+        }
+    }
+
+    return maxCount
+
+
+}

@@ -3,7 +3,9 @@
 // such that the sum of the two resulting arrays is the same.
 // Print the resulting arrays.
 
-//
+//gather the sum of the entire array
+// iterate through the array, as you iterate take in the sum and subtract from the total sum of array 
+// check at every point whether the total sum is equal to the accumualted sum 
 
 function splitInTwo(array) { // O(n)
 

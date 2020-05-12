@@ -48,5 +48,8 @@ const longestNonReapeatSubstring = (str) => {
 
     return maxCount
 
-
 }
+
+let input = "bbbbb"
+
+console.log(longestNonReapeatSubstring(input))

@@ -30,18 +30,26 @@
 
 
 const longestNonReapeatSubstring = (str) => {
-    
-    let hash = {};
 
-    let maxCount = 0
+    if (str === "") {
+        return 0
+    } else if (str === " ") {
+        return 1
+    }
+    
+    let seen = new Set();
+
+    let maxCount = seen.size();
 
     for (let i = 0; i < str.length; i++) {
-        if (!hash[str[i]]) {
-            hash[str[i]] = true 
+        if (!seen.has(str[i])) {
+            seen.add(str[i])
         } else {
-            if (hash.length > maxCount) {
-                maxCount = hash.length
+            let substrLength = seen.size()
+            if (substrLength > maxCount) {
+                maxCount = substrLength
                 hash = {};
+                hash[str[i]] = true
             }
         }
     }
@@ -51,5 +59,11 @@ const longestNonReapeatSubstring = (str) => {
 }
 
 let input = "bbbbb"
+let input2 = "abcabcbb"
+let input3 = "pwwkew"
+let object = {
+    " ": true,
+}
 
-console.log(longestNonReapeatSubstring(input))
+console.log(longestNonReapeatSubstring(""))
+// console.log(Object.keys(object).length)

@@ -12,3 +12,25 @@
 // Output: 0
 // Explanation: The result cannot be 2, because[-2, -1] is not a subarray.
 
+var maxProduct = function (nums) {
+
+
+    let length = nums.length
+
+    let globalMax = nums[0];
+    let localMin = nums[0];
+    let localMax = nums[0];
+
+    for (let i = 1; i < length; i++) {
+
+        let temp = localMax
+
+        localMax = Math.max(nums[i], nums[i] * localMax, nums[i] * localMin)
+        localMin = Math.min(nums[i], nums[i] * temp, nums[i] * localMin)
+
+        globalMax = Math.max(globalMax, localMax)
+    }
+
+    return globalMax
+
+};

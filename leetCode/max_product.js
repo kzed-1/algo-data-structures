@@ -14,7 +14,6 @@
 
 var maxProduct = function (nums) {
 
-
     let length = nums.length
 
     let globalMax = nums[0];

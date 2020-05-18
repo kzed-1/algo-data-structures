@@ -19,21 +19,31 @@
 function findMin(nums) {
     
     if (nums[0] > nums[nums.length-1]) {
-        // regular bsearch
+        let startIdx = 0
+        let endIdx = nums.length - 1
+        let first = nums[0]
+        let midIdx = Math.floor((endIdx - startIdx) / 2)
+
+        while (startIdx != endIdx) {
+
+            if (nums[midIdx + 1] < nums[midIdx]) {
+                return nums[midIdx + 1]
+            } else if (nums[midIdx] > first) {
+                startIdx = midIdx
+                endIdx = nums.length - 1
+            } else if (nums[midIdx] < first) {
+                startIdx = 0;
+                endIdx = midIdx;
+            }
+        }
+    } else {
+        return nums[0]
     }
 
-    let startIdx;
-    let endIdx;
-    let first = nums[0]
-    let midIdx = Math.floor(nums.length /2);
-    
-    if (nums[midIdx+1] < nums[midIdx]) {
-        return nums[midIdx+1]
-    } else if (nums[midIdx] > first) {
-        startIdx = midIdx 
-        endIdx = nums.length-1
-    } else if (nums[midIdx] < first) {
-        startIdx = 0;
-        endIdx = midIdx;
-    }
+ 
 }
+let test = [4, 5, 6, 7, 0, 1, 2];
+let test2 = [0, 1, 2, 4, 5, 6, 7];
+
+console.log(findMin(test))
+console.log(findMin(test2))

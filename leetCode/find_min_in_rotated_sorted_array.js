@@ -18,23 +18,28 @@
 
 function findMin(nums) {
     
-    if (nums[0] > nums[nums.length-1]) {
+    if (nums[0] > nums[nums.length - 1]) {
         let startIdx = 0
         let endIdx = nums.length - 1
         let first = nums[0]
-        let midIdx = Math.floor((endIdx - startIdx) / 2)
 
-        while (startIdx != endIdx) {
+        while (startIdx <= endIdx) {
+            let midIdx = startIdx + Math.floor((endIdx - startIdx) / 2)
 
             if (nums[midIdx + 1] < nums[midIdx]) {
                 return nums[midIdx + 1]
-            } else if (nums[midIdx] > first) {
-                startIdx = midIdx
-                endIdx = nums.length - 1
-            } else if (nums[midIdx] < first) {
-                startIdx = 0;
-                endIdx = midIdx;
             }
+
+            if (nums[midIdx - 1] > nums[midIdx]) {
+                return nums[midIdx]
+            }
+
+            if (nums[midIdx] > first) {
+                startIdx = midIdx + 1
+            } else {
+                endIdx = midIdx - 1;
+            }
+
         }
     } else {
         return nums[0]

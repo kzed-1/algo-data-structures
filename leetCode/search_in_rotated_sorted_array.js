@@ -48,3 +48,47 @@ var search = function (nums, target) {
 
 };
 
+var search = function (nums, target) {
+
+    if (nums === null || nums.length === 0) return -1;
+
+    let left = 0;
+    let right = nums.length - 1;
+
+    while (left < right) {
+        let mid = left + Math.floor((right - left) / 2)
+
+        if (nums[mid] > nums[right]) {
+            left = mid + 1
+        } else {
+            right = mid
+        }
+    }
+
+    let start = left;
+    let left2 = 0;
+    let right2 = nums.length - 1;
+
+
+
+    if (target >= nums[start] && target <= nums[right2]) {
+        left2 = start;
+    } else {
+        right2 = start;
+    }
+
+    while (left2 <= right2) {
+        let midpt = left2 + Math.floor((right2 - left2) / 2)
+
+        if (nums[midpt] === target) {
+            return midpt
+        } else if (nums[midpt] < target) {
+            left2 = midpt + 1
+        } else {
+            right2 = midpt - 1
+        }
+    }
+
+    return -1
+
+};

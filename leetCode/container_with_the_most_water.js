@@ -41,7 +41,7 @@ var maxArea = function (height) {
 
 };
 
-// 2 pointers approach
+// 2 pointers
 var maxArea = function (height) {
 
     //iterate through array 

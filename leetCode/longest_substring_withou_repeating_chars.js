@@ -58,6 +58,30 @@ const longestNonReapeatSubstring = (str) => {
 
 }
 
+var lengthOfLongestSubstring = function (s) {
+
+    let length = s.length
+
+    let left = 0;
+    let right = 0;
+    let max = 0;
+
+    let seen = new Set()
+
+    while (left < length && right < length) {
+        if (!seen.has(s[right])) {
+            seen.add(s[right++])
+            max = Math.max(max, right - left)
+        } else {
+            seen.delete(s[left++])
+        }
+    }
+
+    return max
+};
+
+
+
 let input = "bbbbb"
 let input2 = "abcabcbb"
 let input3 = "pwwkew"

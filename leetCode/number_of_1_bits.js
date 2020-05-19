@@ -19,3 +19,19 @@
 // Explanation: The input binary string 11111111111111111111111111111101 has a total of thirty one '1' bits.
 
 
+var hammingWeight = function (n) {
+
+    let count = 0;
+
+    for (let i = 0; i < 32; i++) {
+
+        if ( 1 & n === 1) {
+            count += 1
+        }
+
+        n = n >> 1;
+    }
+
+    return count
+
+};

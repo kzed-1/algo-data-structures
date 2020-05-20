@@ -165,4 +165,4 @@ function solution(U, N) {
     });
 }
 
-https://app.codility.com/c/feedback/J9P79U-BS6/
+//      https://app.codility.com/c/feedback/J9P79U-BS6/ 

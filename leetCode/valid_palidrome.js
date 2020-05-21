@@ -34,3 +34,23 @@ var isPalindrome = function (s) {
         return str === reverse
 
 };
+
+var isPalindrome = function (s) {
+
+    const alpha = new Set("abcdefghijklmnopqrstuvwxyz1234567890".split(""))
+
+    let newStr = ""
+
+    for (let i = 0; i < s.length; i++) {
+        if (alpha.has(s[i].toLowerCase())) {
+            newStr += s[i].toLowerCase();
+        }
+    }
+
+    for (let i = 0; i < newStr.length / 2; i++) {
+        if (newStr[i] !== newStr[newStr.length - i - 1]) return false
+    }
+    console.log(newStr)
+    return true
+
+};

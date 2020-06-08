@@ -28,6 +28,57 @@
 // would be first - come, first - served.
 
 
+// function inOrder(dineIn, takeOut, served) {
+
+//     for (let i = 0; i < served.length; i++) {
+
+//         if (takeOut.length === 0 && dineIn.length === 0 ) return true
+
+//         if (served[i] === dineIn[0] && dineIn.length > 0) {
+//             dineIn.shift();
+//         } else if (served[i] === takeOut[0] && takeOut.length > 0) {
+//             takeOut.shift();
+//         } else {
+//             return [dineIn, takeOut, served]
+//         }
+//     }
+
+//     return true 
+// }
+
 function inOrder(dineIn, takeOut, served) {
-    
+
+    let dineInIdx = 0;
+    let takeOutIdx = 0;
+    let lastTakeOutIdx = takeOut.length - 1;
+    let lastDineInIdx = dineIn.length - 1;
+
+    for (let i = 0; i < served.length; i++) {
+        let order = served[i];
+
+        if (dineInIdx <= lastDineInIdx && order === dineIn[dineInIdx]) {
+            dineInIdx++;
+        } else if (takeOutIdx <= lastTakeOutIdx && order === takeOut[takeOutIdx]) {
+            takeOutIdx++;
+        } else {
+            return false;
+        }
+
+    }
+
+    if (dineInIdx !== dineIn.length || takeOutIdx !== takeOut.length) {
+        return false
+    }
+
+    return true
+
 }
+
+const di = [12, 19, 2];
+const to = [17, 8, 24];
+const so = [17, 8, 12, 19, 24, 2];
+
+console.log(inOrder([2, 4, 6], [1, 3, 5], [1, 2, 4, 6, 5, 3]))
+console.log(inOrder(di, to, so));
+console.log(inOrder(di, [17], [17,12,19,2]));
+

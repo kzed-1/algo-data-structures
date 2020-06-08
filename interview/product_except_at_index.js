@@ -43,9 +43,12 @@ function getProductsOfAllIntsExceptAtIndex(arr) {
     }
 
     for (let i = 0; i < arr.length; i++) {
-        result[i] = left[i] * roght[i]
+        result[i] = left[i] * right[i]
     }
 
     return result 
 
 }
+
+// console.log(getProductsOfAllIntsExceptAtIndex([1, 7, 3, 4]))
+console.log(getProductsOfAllIntsExceptAtIndex([0, 7, 3, 4]))

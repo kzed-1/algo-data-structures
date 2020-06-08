@@ -30,6 +30,7 @@ function getProductsOfAllIntsExceptAtIndex(arr) {
 
     const right = [];
     const left = [1];
+    const result = [];
 
     right[arr.length-1] = 1;
 
@@ -37,10 +38,14 @@ function getProductsOfAllIntsExceptAtIndex(arr) {
         left[i] = left[i-1] * arr[i-1]
     }
 
-    for (let i = arr.length-2; i >= 0; i --) {
+    for (let i = arr.length-2; i >= 0; i--) {
         right[i] = right[i+1] * arr[i+1]
     }
 
+    for (let i = 0; i < arr.length; i++) {
+        result[i] = left[i] * roght[i]
+    }
 
+    return result 
 
 }

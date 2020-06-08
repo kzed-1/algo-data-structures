@@ -28,6 +28,10 @@
 
 function getProductsOfAllIntsExceptAtIndex(arr) {
 
+    if (arr.length < 2) {
+        throw new Error('need at least 2 numbers')
+    }
+
     const right = [];
     const left = [1];
     const result = [];
@@ -51,4 +55,4 @@ function getProductsOfAllIntsExceptAtIndex(arr) {
 }
 
 // console.log(getProductsOfAllIntsExceptAtIndex([1, 7, 3, 4]))
-console.log(getProductsOfAllIntsExceptAtIndex([0, 7, 3, 4]))
+console.log(getProductsOfAllIntsExceptAtIndex([2]))

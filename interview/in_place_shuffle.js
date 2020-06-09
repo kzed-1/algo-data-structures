@@ -11,32 +11,76 @@
 // if not in seen list use that number as index the new index 
 
 
-function shuffle(arr) {
+// function shuffle(arr) {
 
-    const seen = new Set;
+//     const seen = new Set();
+//     let newIdx;
 
-    const result = [];
+//     const result = [];
 
-    for (let i = 0; i < arr.length; i++) {
-        seen.add(i);
+//     for (let i = 0; i < arr.length; i++) {
 
-        let newIdx;
+//         newIdx = getRandom(0, arr.length)
 
-        while(seen.has(i)) {
-            newIdx = getRandom(0, arr.length)
-        };
+//         while (seen.has(newIdx) && seen.size !== arr.length) {
+//             newIdx = getRandom(0, arr.length)
+//         };
 
-        result[newIdx] = arr[i]
-    }
+//         seen.add(newIdx)
 
-    return result;
+//         console.log(seen)
+//         result[newIdx] = arr[i]
+//     }
 
-}
+//     return result;
+
+// }
+
+// function getRandom(floor, ceiling) {
+//     return Math.floor(Math.random() * ceiling) + floor
+// }
+
+// const nums = [1,2,3,4,5]
+
+
+
+// console.log(shuffle(nums))
+// console.log(getRandom(0,5))
+
+// solution:
+
+// use the random function to pick random number for the index we want to replace at 
+// iterate through the array:
+// if the rendom generated number != our current, swap the numbers 
+// continue to do the swap until the end of the for loop
 
 function getRandom(floor, ceiling) {
-    return Math.floor(Math.random() * ceiling) + floor
+    return Math.floor(Math.random() * (ceiling-floor + 1)) + floor;
+};
+
+
+function shuffle(arr) {
+
+    if (arr.length < 2) return arr;
+
+    for (let indexWeArePicking = 0; indexWeArePicking < arr.length-1; indexWeArePicking++) { 
+        // end at the index before the last index because we are alwasy swapping 2 numbers, 
+        // so we have to swap the last index with whatever number is last 
+
+        const randomIdx = getRandom(indexWeArePicking, arr.length-1);
+
+        if (randomIdx !== indexWeArePicking) {
+            const valueRandomIdx = arr[randomIdx];
+            arr[randomIdx] = arr[indexWeArePicking];
+            arr[indexWeArePicking] = valueRandomIdx;
+        }
+    }
+
+    return arr 
 }
 
-const nums = [1,2,3,4,5]
+const nums = [1, 2, 3, 4, 5]
 
-console.log(shuffle(num))
+
+
+console.log(shuffle(nums))

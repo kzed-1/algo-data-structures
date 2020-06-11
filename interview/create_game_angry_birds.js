@@ -29,13 +29,30 @@
 
 // use counting sort 
 
-function highScore(scores, highScore) {
+function sortScores(scores, highScore) {
 
-    const result = new Array(highScore+1).fill(0);
+    const buckets = new Array(highScore+1).fill(0);
+    const result = []
+
+    for (let i = 0; i < scores.length; i++) {
+        buckets[scores[i]] += 1;
+    }
+
+    for (let bucketIdx = 0; bucketIdx < buckets.length; bucketIdx++) {
+        while(buckets[bucketIdx] > 0) {
+            result.unshift(bucketIdx)
+            buckets[bucketIdx] -= 1
+        }
+    }
 
     return result
 
-
 }
 
-console.log(highScore([1,1,1], 4 ))
+const unsortedScores = [37, 89, 41, 65, 91, 53];
+const HIGHEST_POSSIBLE_SCORE = 100;
+
+sortScores(unsortedScores, HIGHEST_POSSIBLE_SCORE);
+// returns [91, 89, 65, 53, 41, 37]
+
+// console.log(highScore([1,1,1], 4 ))

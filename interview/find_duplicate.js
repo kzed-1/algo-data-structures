@@ -33,7 +33,7 @@ function findDup(arr) {
     let ceiling = arr.length-1;
 
     while (floor < ceiling) {
-        let mid = math.floor(floor + (ceiling-floor) / 2);
+        let mid = Math.floor(floor + (ceiling-floor) / 2);
 
         let lowerRangeFloor = floor;
         let lowerRangeCeiling = mid;
@@ -42,11 +42,13 @@ function findDup(arr) {
 
         let count = 0;
 
-        for (let i = lowerRangeFloor; i <= lowerRangeCeiling; i++) {
-            count++;
-        }
+        arr.forEach(element => {
+           if (element >= lowerRangeFloor && element <= lowerRangeCeiling) {
+               count+=1;
+           } 
+        });
 
-        if (count > lowerRangeCeiling-lowerRangeFloor+1) {
+        if (count > (lowerRangeCeiling-lowerRangeFloor+1)) {
             floor = lowerRangeFloor;
             ceiling = lowerRangeCeiling;
         } else {

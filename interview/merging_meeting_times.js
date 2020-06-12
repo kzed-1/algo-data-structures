@@ -48,12 +48,14 @@ function mergeRanges(times) {
     const mergedMeetings = [sortedTimes[0]]
 
 
-    for (let i = 1; i < sortedTimes.length-1; i++) {
+    for (let i = 1; i < sortedTimes.length; i++) {
         const currentMeeting = sortedTimes[i];
         const lastMergedMeeting = mergedMeetings[mergedMeetings.length-1];
 
         if (currentMeeting.startTime <= lastMergedMeeting.endTime) {
             lastMergedMeeting.endTime = currentMeeting.endTime
+        } else {
+            mergedMeetings.push(currentMeeting)
         }
     }
 

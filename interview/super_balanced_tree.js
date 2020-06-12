@@ -49,7 +49,7 @@ function superBalanced(treeRoot) {
             if (depths.indexOf(depth) < 0) {
                 depths.push(depth);
             } else {
-                if (depths.length > 2 || Math.abs(depths[0] - depths[1]) > 1) {
+                if ( (depths.length > 2) || depths.length === 2 && Math.abs(depths[0] - depths[1]) > 1) {
                     return false 
                 }
             }
@@ -70,6 +70,5 @@ function superBalanced(treeRoot) {
 
 }
 
-console.log(superBalanced())
 
 

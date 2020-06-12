@@ -52,7 +52,5 @@ function sortScores(scores, highScore) {
 const unsortedScores = [37, 89, 41, 65, 91, 53];
 const HIGHEST_POSSIBLE_SCORE = 100;
 
-sortScores(unsortedScores, HIGHEST_POSSIBLE_SCORE);
+console.log(sortScores(unsortedScores, HIGHEST_POSSIBLE_SCORE));
 // returns [91, 89, 65, 53, 41, 37]
-
-// console.log(highScore([1,1,1], 4 ))

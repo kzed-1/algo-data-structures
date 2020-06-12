@@ -39,11 +39,30 @@
 
 function mergeRanges(times) {
 
-    return times.sort()
+    const timesCopy = JSON.parse(JSON.stringify(times));
+
+    const sortedTimes = timesCopy.sort((a,b) => {
+        return a.startTime - b.startTime
+    })
+
+    const mergedMeetings = [sortedTimes[0]]
+
+
+    for (let i = 1; i < sortedTimes.length-1; i++) {
+        const currentMeeting = sortedTimes[i];
+        const lastMergedMeeting = mergedMeetings[mergedMeetings.length-1];
+
+        if (currentMeeting.startTime <= lastMergedMeeting.endTime) {
+            lastMergedMeeting.endTime = currentMeeting.endTime
+        }
+    }
+
+    return mergedMeetings
+
     
 }
 
-const test = [
+const times =  [
     { startTime: 0, endTime: 1 },
     { startTime: 3, endTime: 5 },
     { startTime: 4, endTime: 8 },
@@ -51,4 +70,4 @@ const test = [
     { startTime: 9, endTime: 10 },
 ]
 
-console.log(test.sort())
+console.log(mergeRanges(times))

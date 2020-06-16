@@ -21,5 +21,22 @@
 // }
 
 function bsSearchTree(treeNode) {
-    
+
+   let queue = [treeNode];
+
+   while (queue.length) {
+       const node = queue.pop();
+
+       if (node.left) {
+            if (node.left.value > node.value) return false
+           queue.unshift(node.left)
+
+       }
+       if (node.right) {
+           if (node.right.value < node.value) return false
+           queue.unshift(node.right)
+       }
+   }
+
+   return true
 }

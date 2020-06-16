@@ -20,23 +20,60 @@
 //     }
 // }
 
+// function bsSearchTree(treeNode) {
+
+//    let queue = [treeNode];
+
+//    while (queue.length) {
+//        const node = queue.pop();
+
+//        if (node.left) {
+//             if (node.left.value > node.value) return false
+//            queue.unshift(node.left)
+
+//        }
+//        if (node.right) {
+//            if (node.right.value < node.value) return false
+//            queue.unshift(node.right)
+//        }
+//    }
+
+//    return true
+// }
+
 function bsSearchTree(treeNode) {
 
-   let queue = [treeNode];
+    const nodeAndBoundsStack = [];
 
-   while (queue.length) {
-       const node = queue.pop();
+    nodeAndBoundsStack.push({
+        node: treeRoot,
+        lowerBound: -Infinity,
+        upperBound: Infinity
+    });
 
-       if (node.left) {
-            if (node.left.value > node.value) return false
-           queue.unshift(node.left)
+    while (nodeAndBoundsStack.length) {
+        const { node, lowerBound, upperBound } = nodeAndBoundsStack.pop();
 
-       }
-       if (node.right) {
-           if (node.right.value < node.value) return false
-           queue.unshift(node.right)
-       }
-   }
+        if (node.value <= lowerBound || node.value >= upperBound) {
+            return false;
+        }
+    }
 
-   return true
+    if (node.left) {
+        nodeAndBoundsStack.push({
+            node: node.left,
+            lowerBound,
+            upperBound: node.value
+        })
+    }
+
+    if (node.right) {
+        nodeAndBoundsStack.push({
+            node: node.right,
+            lowerBound: node.value, 
+            upperBound
+        })
+    }
+
+    return true;
 }

@@ -19,3 +19,7 @@
 //         return this.right;
 //     }
 // }
+
+function bsSearchTree(treeNode) {
+    
+}

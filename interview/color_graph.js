@@ -31,30 +31,30 @@ const graph = [a, b, c];
 // once color is assigned, move color pointer to the next color in list
 // 
 
-// function colorNode(graph, colors) {
+function colorNode(graph, colors) {
 
-//     graph.forEach(node => {
+    graph.forEach(node => {
 
-//         if (node.neighbors.has(node)) {
-//             return new Error(`Legal coloring impossible for node with loop: ${node.label}`)
-//         }
+        if (node.neighbors.has(node)) {
+            return new Error(`Legal coloring impossible for node with loop: ${node.label}`)
+        }
 
-//         const illegalColors = new Set()
+        const illegalColors = new Set()
 
-//        node.neighbors.forEach(neighbor => {
+       node.neighbors.forEach(neighbor => {
 
-//            if (!illegalColors.has(neighbor.color)) {
-//                illegalColors.add(neighbor.color)
-//            }
-//        })
+           if (!illegalColors.has(neighbor.color)) {
+               illegalColors.add(neighbor.color)
+           }
+       })
 
-//        colors.forEach(color => {
-//             if (!illegalColors.has(color)) {
-//                 node.color = color;
-//                 break;
-//             } 
-//        })
+       colors.forEach(color => {
+            if (!illegalColors.has(color)) {
+                node.color = color;
+                break;
+            } 
+       })
         
-//     })
+    })
 
-// }
+}

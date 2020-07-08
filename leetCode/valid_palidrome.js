@@ -55,4 +55,8 @@ var isPalindrome = function (s) {
 
 };
 
+var test = () => {
+    
+}
+
 // This is a test to check on comments
